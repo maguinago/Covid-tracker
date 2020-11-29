@@ -14,6 +14,7 @@ drop table if exists degree;
 drop table if exists degree_type;
 drop table if exists classroom;
 drop table if exists attendance;
+drop table if exists enrollment;
 
 create table person (
     id integer primary key autoincrement,   
@@ -21,12 +22,12 @@ create table person (
     tax_id integer unique,    --1 = green (no contact with known sick people)       
     address text,             --2 = yellow (indirect contact with a sick person)
     phone_number integer,     --3 = red (direct contact with a sick)
-    tag varchar               --4 = black (person that tested positive)
+    tag varchar CHECK(tag>0 and tag<4)  --4 = black (person that tested positive)
 );
 
 create table student (
     id integer primary key references person,
-    email concat ('up',id,'@',faculty,'up.pt'), --email = 'up'$id.student'@'$faculty'acronym
+    email varchar, -- concatenate  to be fixed: (up,id,'@',faculty,'up.pt'), --email = 'up'$id.student'@'$faculty'acronym
     degree integer unique references degree
     faculty varchar references faculty,
 );
@@ -43,22 +44,27 @@ create table faculty (
     address varchar not null
 );
 
+create table degree_type (
+    code varchar primary key, --e.g. 1 = 1º ciclo
+    name text not null, --e.g. licenciatura
+);
+
 create table degree (
-    acronym varchar primary key not null,
-    name text not null,
-    faculty references faculty
+    acronym varchar primary key not null, 
+    name text not null,                   
+    faculty references faculty            
 );
 
 create table course (
-    acronym varchar primary key,
-    name text not null,
-    degree varchar not null references degree
+    acronym varchar primary key,                --e.g. SIBD
+    name text not null,                         --e.g. Sistemas de Informação e Bases de Dados
+    degree varchar not null references degree   --e.g. MIEEC
 );
 
 create table class (
-    course_acronym varchar references course,
-    number integer,
-    max_students integer,
+    course_acronym varchar references course,   --e.g. SIBD
+    number integer, --e.g. 03
+    max_students integer,   --30
     primary key (course_acronym, number)
 );
 
