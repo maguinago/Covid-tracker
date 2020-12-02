@@ -22,19 +22,16 @@ body {
   grid-template-rows: auto 1fr auto;
 }
 
-#title {
-color: orange;
-width: 5px;
-max-width: 5px;
-}
 
 .h1_items {
 width: 2em;
 max-width: 2em;
 }
 
-#logo {
-  background-color: solid;
+#logo img {
+  width: 6em;
+  margin: 1em 2em 1em;
+  border: 0.2em solid black;
 }
 
 a {
@@ -103,20 +100,21 @@ body > footer {
   flex-grow: 1;
   padding: 1em; margin: 1em;
   background-color: var(--background-color-dark);
+  border: 3px solid rgb(75, 74, 74)    ;
   text-align: center;
   font-size: 2em;
-  box-shadow: 1em 1em 4em rgb(156, 156, 156);
 }
 
-#categories ul li a {
-  height: 100%;
-  width: 100%;
-}
 
 #categories h2 {
   padding-left: 1.5em;
+  display: flex;
+  
 }
 
+#chart img {
+  max-width: 5em;
+}
 /**
  * Fotter
  **/
