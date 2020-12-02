@@ -1,0 +1,163 @@
+html {
+  --primary-color: #e4e4e4;
+
+  --background-color: rgb(196, 196, 196);
+  --background-color-light: #eee;
+  --background-color-dark: rgb(18, 7, 70);
+
+  background-color: var(--background-color);
+  font-family: 'Merriweather', serif;
+
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  max-width: 60em;
+
+  margin: 0 auto;
+  background-color: var(--background-color-light);
+
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+#title {
+color: orange;
+width: 5px;
+max-width: 5px;
+}
+
+.h1_items {
+width: 2em;
+max-width: 2em;
+}
+
+#logo {
+  background-color: solid;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Libre Franklin', sans-serif;
+}
+
+/**
+ * Header
+ **/
+
+body > header {
+  padding: 1em;
+  background-color: var(--background-color-dark);
+  border-bottom: 5px solid rgb(0, 0, 0);
+
+  display: grid;
+  grid-template-columns: 1fr auto;
+}
+
+body > header form {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
+body > header form input, body > header form a {
+  margin: 0.5em;
+}
+
+body > header form input[name=username],
+body > header form input[name=password]{
+  grid-column-end: span 2;
+}
+
+/**
+ * Main Section
+ **/
+
+body > section {
+  padding: 1em;
+}
+
+/**
+ * Footer
+ **/
+
+body > footer {
+  background-color: var(--background-color-dark);
+
+}
+
+/* Menu Items */
+
+#categories ul {
+  display: flex;
+  padding: 5em; margin: 0;
+  flex-wrap: wrap;
+}
+
+#categories ul li {
+  display: block;
+  flex-grow: 1;
+  padding: 1em; margin: 1em;
+  background-color: var(--background-color-dark);
+  text-align: center;
+  font-size: 2em;
+  box-shadow: 1em 1em 4em rgb(156, 156, 156);
+}
+
+#categories ul li a {
+  height: 100%;
+  width: 100%;
+}
+
+#categories h2 {
+  padding-left: 1.5em;
+}
+
+/**
+ * Fotter
+ **/
+
+
+footer {
+  background-color: rgb(18, 7, 70);
+  height: 1.5em;
+}
+
+footer p {
+  color: #e4e4e4;
+  max-height: 0;
+  text-align: center;
+  margin: auto;
+  padding: 0.2em;
+}
+
+
+#banner {
+  margin: auto;
+  display: block;
+  margin: auto;
+  padding: 2em 1em 0;
+}
+
+#banner a{
+  width: auto;
+  max-width: 50em;
+  height: fit-content; 
+}
+
+#banner img {
+  border: 0.2em solid rgb(0, 0, 0);  
+}
+
+#banner p {
+  display: block;
+  margin-block-start: 0;
+  color: white;
+  background-color: black;
+  text-align: center;
+
+}
