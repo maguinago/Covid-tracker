@@ -95,10 +95,14 @@ body > footer {
   flex-wrap: wrap;
 }
 
+#categories ul a {
+  margin: 0.5em;
+}
+
 #categories ul li {
   display: block;
   flex-grow: 1;
-  padding: 1em; margin: 1em;
+  padding: 1em; margin: ;
   background-color: var(--background-color-dark);
   border: 3px solid rgb(75, 74, 74)    ;
   text-align: center;
@@ -108,8 +112,13 @@ body > footer {
 
 #categories h2 {
   padding-left: 1.5em;
+}
+
+#chart {
   display: flex;
-  
+  flex-flow: wrap;
+  align-items: center;
+  max-width: 15em;
 }
 
 #chart img {
