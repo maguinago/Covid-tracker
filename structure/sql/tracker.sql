@@ -139,12 +139,10 @@ INSERT INTO class VALUES (5, 5, 30);
 INSERT INTO person VALUES (1, 'EXEMPLO_JANITOR', 0, 'Casa', 12345, 4);
 INSERT INTO janitor VALUES (1);
 
+          -- não está a funcionar!!!
 -- INSERT INTO classroom VALUES ('SIBD', 1, 1, 'FEUP');
 -- INSERT INTO classroom VALUES ('SIBD2', 1, 'FEUP');
 -- INSERT INTO classroom (SIBD3, 1, 'FEUP');
 -- INSERT INTO classroom (RCOM1, 1, 'FEUP');
 -- INSERT INTO classroom (RCOM2, 1, 'FEUP');
 -- INSERT INTO classroom (ALGE1, 1, 'FEUP');
--- janitor_id REFERENCES janitor,
--- faculty_acronym REFERENCES faculty,
--- FOREIGN KEY (course_acronym, num) REFERENCES class (course_acronym, num)
