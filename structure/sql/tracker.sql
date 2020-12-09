@@ -6,17 +6,17 @@ PRAGMA foreign_keys = ON;
 
 --drop tables
 
-drop table if exists person;
 drop table if exists student;
 drop table if exists professor;
 drop table if exists janitor;
-drop table if exists course;
+drop table if exists person;
 drop table if exists class;
+drop table if exists course;
 drop table if exists campus;
-drop table if exists faculty;
 drop table if exists classroom;
-drop table if exists degree_type;
 drop table if exists degree;
+drop table if exists degree_type;
+drop table if exists faculty;
 drop table if exists enrollment;
 drop table if exists occurrence;
 drop table if exists attendance;
@@ -34,15 +34,19 @@ create table person (
 
 create table student (
     id integer primary key references person,
-    email varchar, --as 'up' + cast(id as varchar) + '@' + cast(faculty as varchar) + 'up.pt'
     degree integer references degree,
     faculty varchar references faculty
 );
 
 create table professor (
     id integer primary key references person,
-    email varchar,
+    faculty varchar references faculty,
     classification text
+);
+
+create table janitor (
+    id integer primary key references person,
+    email varchar
 );
 
 create table faculty (
@@ -51,8 +55,15 @@ create table faculty (
     address varchar not null
 );
 
+create table classroom (
+    code varchar primary key, --e.g. "GA1", "101"...
+    name text, --e.g. "Auditório Geral 1" (opcional)
+    faculty varchar references faculty,
+    janitor integer references janitor
+);
+
 create table degree_type (
-    code varchar primary key, --e.g. 1=1º ciclo, 2=2º ciclo...
+    code varchar primary key, --e.g. '1'=1º ciclo, '2'=2º ciclo...
     name text not null --e.g. licenciatura
 );
 
@@ -97,19 +108,69 @@ create table attendance (
     ocurrence_id integer not null references ocurrence
 );
 
---inserts
+--INSERTS
 
-insert into person (id,name,address,phone_number,tag) values (null,'AAA','Rua A, 1',111,1);
-insert into faculty (acronym,name,address) values ('FEUP','Faculdade de Engenharia','Rua B, 2');
-insert into degree_type (code,name) values (1,'Mestrado Integrado');
+--faculties:
+insert into faculty (acronym,name,address)
+values ('FEUP',
+        'Faculdade de Engenharia',
+        'R. Dr. Roberto Frias s/n, 4200-465 Porto, Portugal');
+
+insert into faculty (acronym,name,address)
+values ('FLUP',
+        'Faculdade de Letras',
+        'Via Panorâmica Edgar Cardoso s/n, 4150-564 Porto, Portugal');
+
+insert into faculty (acronym,name,address)
+values ('FDUP',
+        'Faculdade de Direito',
+        'Rua dos Bragas 223, 4050-123 Porto, Portugal');
+
+insert into faculty (acronym,name,address)
+values ('FEP',
+        'Faculdade de Economia',
+        'R. Dr. Roberto Frias 464, 4200-465 Porto, Portugal');
+
+
+insert into faculty (acronym,name,address)
+values ('FBAUP',
+        'Faculdade de Belas Artes',
+        'Av. de Rodrigues de Freitas 265, 4049–021 Porto, Portugal');
+
+--degree types:
+insert into degree_type (code,name)
+values (1,
+'Licenciatura');
+
+insert into degree_type (code,name)
+values (2,
+'Mestrado Integrado');
+
+insert into degree_type (code,name)
+values (3,
+'Mestrado');
+
+insert into degree_type (code,name)
+values (4,
+'Doutoramento');
+
+--Degrees:
+
+
+insert into person (id,name,address,phone_number,tag) values (20210001,'AAA','Rua A, 1',111,1);
+
 insert into degree (acronym,name,faculty,degree_type) values ('MIEEC','Mestrado Integrado','FEUP',1);
-insert into student (id,degree,faculty) values (1,'MIEEC','FEUP');
+insert into student (id,degree,faculty) values (20210001,'MIEEC','FEUP');
 
-select id, email = ('up' + id +'@' + faculty +'up.pt') as email, degree, faculty
-from student
-;
-select *
-    case
-        when email is null then 'up' + id +'@' + faculty +'up.pt'
-    end as ac
-from student;
+
+insert into person (id,name,address,phone_number,tag) values (null,'BBB','Rua AB, 1',222,1);
+insert into student (id,degree,faculty) values (null,'MIEEC','FEUP');
+
+-- testing queries for interrogating the database later
+
+--select student with email (no need to store email as
+--a variable):
+-- SELECT *, 'up' || id || '@' || faculty || '.up.pt' AS email
+-- FROM student
+-- join person using (id);
+
