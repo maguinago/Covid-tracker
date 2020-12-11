@@ -8,12 +8,11 @@ PRAGMA foreign_keys = ON;
 
 drop table if exists student;
 drop table if exists professor;
-drop table if exists janitor;
-drop table if exists person;
 drop table if exists class;
 drop table if exists course;
-drop table if exists campus;
 drop table if exists classroom;
+drop table if exists janitor;
+drop table if exists person;
 drop table if exists degree;
 drop table if exists degree_type;
 drop table if exists faculty;
@@ -57,7 +56,7 @@ create table faculty (
 
 create table classroom (
     code varchar primary key, --e.g. "GA1", "101"...
-    name text, --e.g. "Auditório Geral 1" (opcional)
+    description text, --e.g. "Auditório Geral 1" (opcional)
     faculty varchar references faculty,
     janitor integer references janitor
 );
@@ -81,10 +80,10 @@ create table course (
 );
 
 create table class (
-    course_acronym varchar references course,   --e.g. SIBD
-    number integer, --e.g. 03
+    course varchar references course,   --e.g. SIBD
+    number varchar, --e.g. 03
     max_students integer,   --30
-    primary key (course_acronym, number)
+    primary key (course, number)
 );
 
 create table enrollment (
@@ -94,12 +93,18 @@ create table enrollment (
     date datetime not null
 );
 
-create table occurrence (
-    id integer primary key autoincrement,
-    course_acronym varchar references course,
-    class_number integer references class,
+create table occurrence (   --every time a class happens
+    course varchar class,
+    class_number varchar class,
+    id integer not null,
+    classroom varchar not null references classroom,
     start_time datetime not null,
-    end_time datetime not null
+    end_time datetime not null,
+    primary key (course,class_number,id),
+    foreign key (course,class_number) references class(course,number),
+    constraint start_time_less_than_end_time CHECK (start_time < end_time),
+    constraint start_time_within_semester CHECK (start_time between '44102' and '44183'),
+    constraint end_time_within_semester CHECK (end_time between '44102' and '44183')
 );
 
 create table attendance (
@@ -154,17 +159,38 @@ insert into degree_type (code,name)
 values (4,
 'Doutoramento');
 
---Degrees:
+insert into degree (acronym,name,faculty,degree_type)
+values ('MIEEC',
+        'Mestrado Integrado em Engenharia Eletrotécnica e de
+        Computadores',
+        'FEUP',2);
 
-
-insert into person (id,name,address,phone_number,tag) values (20210001,'AAA','Rua A, 1',111,1);
-
-insert into degree (acronym,name,faculty,degree_type) values ('MIEEC','Mestrado Integrado','FEUP',1);
-insert into student (id,degree,faculty) values (20210001,'MIEEC','FEUP');
-
-
+--Person:
+insert into person (id,name,address,phone_number,tag) values (20210000,'AAA','Rua A, 1',111,1);
 insert into person (id,name,address,phone_number,tag) values (null,'BBB','Rua AB, 1',222,1);
-insert into student (id,degree,faculty) values (null,'MIEEC','FEUP');
+
+insert into student (id,degree,faculty) values (20210000,'MIEEC','FEUP');
+insert into janitor (id,email) values (20210001,'jjj@feup');
+
+
+--Courses:
+--SIBD
+insert into course (acronym,name,degree) values ('SIBD','Sistemas de Informação e Bases de Dados','MIEEC');
+
+--Classes:
+--SIBD01
+insert into class (course,number,max_students) values ('SIBD',01,30);
+
+--Classroom:
+insert into classroom (code,description,faculty,janitor)
+     values ('ILAB1','Laboratório de Informática 1','FEUP',20210001);
+--Occurence:
+--SIBD1
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,1,'ILAB1','44103.6875','44103.7708333333');
+
+
+
+
 
 -- testing queries for interrogating the database later
 
