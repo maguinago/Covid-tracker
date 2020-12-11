@@ -8,6 +8,7 @@ PRAGMA foreign_keys = ON;
 
 drop table if exists student;
 drop table if exists professor;
+drop table if exists occurrence;
 drop table if exists class;
 drop table if exists course;
 drop table if exists classroom;
@@ -17,7 +18,6 @@ drop table if exists degree;
 drop table if exists degree_type;
 drop table if exists faculty;
 drop table if exists enrollment;
-drop table if exists occurrence;
 drop table if exists attendance;
 
 --create tables
