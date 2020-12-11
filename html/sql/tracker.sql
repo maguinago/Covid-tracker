@@ -103,8 +103,8 @@ create table occurrence (   --every time a class happens
     primary key (course,class_number,id),
     foreign key (course,class_number) references class(course,number),
     constraint start_time_less_than_end_time CHECK (start_time < end_time),
-    constraint start_time_within_semester CHECK (start_time between '44102' and '44183'),
-    constraint end_time_within_semester CHECK (end_time between '44102' and '44183')
+    constraint start_time_within_semester CHECK (start_time between '2020-09-28 00:00:00' and '2020-12-18 23:59:59'),
+    constraint end_time_within_semester CHECK (end_time between '2020-09-28 00:00:00' and '2020-12-18 23:59:59')
 );
 
 create table attendance (
@@ -186,10 +186,32 @@ insert into classroom (code,description,faculty,janitor)
      values ('ILAB1','Laboratório de Informática 1','FEUP',20210001);
 --Occurence:
 --SIBD1
-insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,1,'ILAB1','44103.6875','44103.7708333333');
-
-
-
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,1,'ILAB1','2020-09-29 16:30:00','2020-09-29 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,2,'ILAB1','2020-09-30 17:30:00','2020-09-30 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,3,'ILAB1','2020-10-06 16:30:00','2020-10-06 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,4,'ILAB1','2020-10-07 17:30:00','2020-10-07 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,5,'ILAB1','2020-10-13 16:30:00','2020-10-13 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,6,'ILAB1','2020-10-14 17:30:00','2020-10-14 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,7,'ILAB1','2020-10-20 16:30:00','2020-10-20 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,8,'ILAB1','2020-10-21 17:30:00','2020-10-21 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,9,'ILAB1','2020-10-27 16:30:00','2020-10-27 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,10,'ILAB1','2020-10-28 17:30:00','2020-10-28 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,11,'ILAB1','2020-11-03 16:30:00','2020-11-03 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,12,'ILAB1','2020-11-04 17:30:00','2020-11-04 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,13,'ILAB1','2020-11-10 16:30:00','2020-11-10 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,14,'ILAB1','2020-11-11 17:30:00','2020-11-11 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,15,'ILAB1','2020-11-17 16:30:00','2020-11-17 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,16,'ILAB1','2020-11-18 17:30:00','2020-11-18 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,17,'ILAB1','2020-11-24 16:30:00','2020-11-24 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,18,'ILAB1','2020-11-25 17:30:00','2020-11-25 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,19,'ILAB1','2020-12-01 16:30:00','2020-12-01 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,20,'ILAB1','2020-12-02 17:30:00','2020-12-02 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,21,'ILAB1','2020-12-08 16:30:00','2020-12-08 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,22,'ILAB1','2020-12-09 17:30:00','2020-12-09 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,23,'ILAB1','2020-12-15 16:30:00','2020-12-15 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,24,'ILAB1','2020-12-16 17:30:00','2020-12-16 19:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,25,'ILAB1','2020-12-22 16:30:00','2020-12-22 18:30:00');
+insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,26,'ILAB1','2020-12-23 17:30:00','2020-12-23 19:30:00');
 
 
 -- testing queries for interrogating the database later
