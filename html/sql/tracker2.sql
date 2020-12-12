@@ -117,7 +117,12 @@ INSERT INTO course VALUES ('PDSI', 'Processamento Digital de Sinal', 'MIEEC');
 INSERT INTO course VALUES ('ELEC', 'Electrónica', 'MIEEC');
 INSERT INTO course VALUES ('RCOM', 'Redes de Computadores', 'MIEEC');
 INSERT INTO course VALUES ('ALGE', 'Álgebra', 'MIEM');
-  -- nao está a dar para colocar mais que uma UC igual noutro curso
+  -- nao está a dar para colocar mais que uma UC igual noutro curso 
+  -- queres dizer,, por exemplo criar uma SIBD em outro curso? Há casos disso na FEUP? Em geral
+  -- pensava que no caso da mesma UC ser ofertada para dois cursos ela ainda pertencia a um.
+  -- No meu curso (Linguas e RI), por exemplo, tenho cadeira de alemão, mas a cadeira é ofertada
+  -- por outro curso (LLC). Mas se precisar podemos mudar sem problema.
+  
 --INSERT INTO course VALUES ('ALGE', 'Álgebra', 'MIEC');
 --INSERT INTO course VALUES ('ALGE', 'Álgebra', 'MIEEC');
 
@@ -133,7 +138,7 @@ INSERT INTO class VALUES ('ALGE', 4, 30);
 INSERT INTO class VALUES ('ALGE', 5, 30);
 
 -- !!!!!!! nao faço a menor ideia de como vamos criar os horários tho, se calhar é melhor criar no website
-
+-- os horários pode ver como fiz no tracker.sql - diz no excel e aqui fica fácil para fazermos para qualquer cadeira
 -- aqui no classroom temos de arranjar primeiro os janitors antes de atribuir salas
 INSERT INTO person (1, 'EXEMPLO_JANITOR', 0, 'Casa', 12345, 4);
 INSERT INTO janitor(1);
