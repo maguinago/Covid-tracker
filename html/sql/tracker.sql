@@ -11,14 +11,14 @@ drop table if exists professor;
 drop table if exists occurrence;
 drop table if exists class;
 drop table if exists course;
-drop table if exists classroom;
-drop table if exists janitor;
-drop table if exists person;
 drop table if exists degree;
 drop table if exists degree_type;
-drop table if exists faculty;
 drop table if exists enrollment;
 drop table if exists attendance;
+drop table if exists classroom;
+drop table if exists janitor;
+drop table if exists faculty;
+drop table if exists person;
 
 --create tables
 
@@ -108,9 +108,10 @@ create table occurrence (   --every time a class happens
 );
 
 create table attendance (
-    student_id integer not null references student,
-    course_acronym varchar references enrollment,
-    ocurrence_id integer not null references ocurrence
+    id integer primary key autoincrement,
+    student_id integer references person,
+    swipe datetime ,
+    classroom varchar not null references classroom
 );
 
 --INSERTS
@@ -166,8 +167,9 @@ values ('MIEEC',
         'FEUP',2);
 
 --Person:
-insert into person (id,name,address,phone_number,tag) values (20210000,'AAA','Rua A, 1',111,1);
-insert into person (id,name,address,phone_number,tag) values (null,'BBB','Rua AB, 1',222,1);
+insert into person (id,name,address,phone_number,tag) values (20210000,'Joao','Rua A, 1',111,1);
+insert into person (id,name,address,phone_number,tag) values (null,'Maria','Rua AB, 1',222,1);
+insert into person (id,name,address,phone_number,tag) values (null,'Joana','Rua AC, 1',333,1);
 
 insert into student (id,degree,faculty) values (20210000,'MIEEC','FEUP');
 insert into janitor (id,email) values (20210001,'jjj@feup');
@@ -184,6 +186,7 @@ insert into class (course,number,max_students) values ('SIBD',01,30);
 --Classroom:
 insert into classroom (code,description,faculty,janitor)
      values ('ILAB1','Laboratório de Informática 1','FEUP',20210001);
+
 --Occurence:
 --SIBD1
 insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,1,'ILAB1','2020-09-29 16:30:00','2020-09-29 18:30:00');
@@ -210,15 +213,32 @@ insert into occurrence (course,class_number,id,classroom,start_time,end_time) va
 insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,22,'ILAB1','2020-12-09 17:30:00','2020-12-09 19:30:00');
 insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,23,'ILAB1','2020-12-15 16:30:00','2020-12-15 18:30:00');
 insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,24,'ILAB1','2020-12-16 17:30:00','2020-12-16 19:30:00');
-insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,25,'ILAB1','2020-12-22 16:30:00','2020-12-22 18:30:00');
-insert into occurrence (course,class_number,id,classroom,start_time,end_time) values ('SIBD',1,26,'ILAB1','2020-12-23 17:30:00','2020-12-23 19:30:00');
 
+--attendance:
+insert into attendance (id,student_id,swipe,classroom)
+values (null,20210000,'2020-09-28 12:55:23','ILAB1');
+
+insert into attendance (id,student_id,swipe,classroom)
+values (null,20210000,'2020-09-29 16:33:10','ILAB1');
+
+insert into attendance (id,student_id,swipe,classroom)
+values (null,20210000,'2020-09-29 16:33:10','ILAB1');
 
 -- testing queries for interrogating the database later
 
 --select student with email (no need to store email as
---a variable):
+--a variable for students):
 -- SELECT *, 'up' || id || '@' || faculty || '.up.pt' AS email
 -- FROM student
 -- join person using (id);
 
+select *
+  from attendance
+    join occurrence
+        on attendance.swipe
+        between start_time
+    and end_time
+where attendance.classroom = occurrence.classroom
+  and occurrence.course='SIBD'
+  and occurrence.class_number='1'
+  and occurrence.start_time like '2020-09-29%';
