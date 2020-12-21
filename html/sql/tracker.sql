@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS person;
 --CREATE TABLEs
 
 CREATE TABLE person (
-    id INTEGER PRIMARY KEY autoincrement,   
+    id INTEGER PRIMARY KEY,   
     name TEXT NOT NULL,       --tag:
                               --1 = green (no contact with known sick people)       
     address TEXT,             --2 = yellow (indirect contact with a sick person)
