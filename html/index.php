@@ -1,15 +1,3 @@
-<?php
-    $dbh = new PDO ('sqlite:sql/tracker.db');
-    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
-    $stmt = $dbh->prepare("SELECT course, class FROM enrollment WHERE person_id = ?");
-    $stmt->execute(array($person_id=201902438));
-
-    $result = $stmt->fetchAll();
-    print_r($result);
-?>
 <!DOCTYPE html> 
 <html>
       
@@ -113,7 +101,7 @@
   <ul class="sideprofile"> 
     <li>
       <div class="profilepic">
-        <img src="images/logo.png" alt="face" width=100% height=100%>
+        <img src="images/perfil1.jpg" alt="face" width=100% height=100%>
       </div>
     </li>
     
@@ -154,8 +142,9 @@
     </li>
   </ul>
   <ul id="list">
-    <li></li>
-    <li></li>
+    <li>Class 2</li>
+    <li>Class 2</li>
+    <li>Class 2</li>
   </ul>
   </body>
 </html>

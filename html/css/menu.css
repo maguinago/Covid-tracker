@@ -1,5 +1,9 @@
-altered
+html {
+    height: 100%;
+}
+
 body {
+    height: 40em;
     margin:0px;
     padding:0px;
     font-family: "Open Sans", arial;
@@ -11,9 +15,9 @@ body {
 /*BARRA VERTICAL MENU COM TAMANHO NAO EXPANDIDO*/
 .sidemenu {
     background:rgb(143, 87, 68);
-    position: absolute;
+    position: fixed;
     top: 0;
-    height:100%;
+    height:40em;
     width:3.5em;
     overflow: hidden;
     transition: width .2s linear;
@@ -23,7 +27,7 @@ body {
 /*TEXTO FICA VISIVEL/MENU EXPANDE QUANDO PASSA O RATO POR CIMA*/
 .sidemenu:hover {
     position:absolute;
-    width: 12em;
+    width: 13em;
 }
 
 .sidemenu li a {
@@ -89,18 +93,18 @@ body {
 .sideprofile {
     background:rgb(66, 172, 80);
     opacity: 90%;
-    position: absolute;
+    position: fixed;
     margin: 0;
     left: 3.5em;
-    width: 20em;
+    width: 15em;
     height: 100%;
     top: 0;
     z-index: 2;
 }
 
 .profilepic {
-    width: 13em;
-    height: 13em;
+    width: 5em;
+    height: 5em;
     margin-top: 3em;
     margin-left: auto;
     margin-right: auto;
@@ -117,7 +121,7 @@ body {
 
 .sideprofile>li {
     position:relative;
-    width: 17em;
+    width: 12em;
     display:table;
     color:#ffffff;
     text-decoration:none;
@@ -149,7 +153,7 @@ body {
 
 .profile-menu a{
     text-transform: capitalize;
-    font-size: 1.8em;
+    font-size: 1em;
     font-weight: bold;
     text-decoration: none;
 }
@@ -210,4 +214,6 @@ hr.dotted {
     user-select: none;
 } */
 
-
+#list {
+    display:block;
+}
