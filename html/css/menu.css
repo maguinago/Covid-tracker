@@ -1,0 +1,213 @@
+altered
+body {
+    margin:0px;
+    padding:0px;
+    font-family: "Open Sans", arial;
+    background: rgb(255, 192, 167);
+    color:white;
+    font-weight:300;
+}
+
+/*BARRA VERTICAL MENU COM TAMANHO NAO EXPANDIDO*/
+.sidemenu {
+    background:rgb(143, 87, 68);
+    position: absolute;
+    top: 0;
+    height:100%;
+    width:3.5em;
+    overflow: hidden;
+    transition: width .2s linear;
+    z-index: 3;
+}
+
+/*TEXTO FICA VISIVEL/MENU EXPANDE QUANDO PASSA O RATO POR CIMA*/
+.sidemenu:hover {
+    position:absolute;
+    width: 12em;
+}
+
+.sidemenu li a {
+    width: 15.5em;  /*TAMANHO TOTAL DA BARRA EXPANDIDA*/
+    display:table;
+    color:#ffffff;
+    text-decoration:none;
+    font-size: 0.8em;
+}
+
+.sidemenu li:hover a {
+    background-color:lightsalmon;  /*COR DA SELEÇÃO NO MENU*/
+}
+    
+.sidemenu ul{
+    padding: 0;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.sidemenu-text  {
+    position:relative;
+    left: 3.5em;
+    top: 1.2em;
+}
+
+/*CENAS DO REGISTER, LOGIN, LOGOUT; FICAM NO FUNDO DA BARRA*/
+.sidemenu ul.loginout {
+    position:absolute;
+    bottom:0;
+}
+
+/*ICONE + TEXTO DAS CENAS FONT AWESOME QUE ESTÃO NO MENU*/
+.fa {
+    position: relative;
+    display: table-cell;
+    height: 2.4em;
+    text-align: center;
+    top: 0.8em; 
+    position:relative;
+}
+    
+/*FW É PARA DEFINIR UM ALINHAMENTO COMUM PARA AS CENAS DA FONT AWESOME*/
+.fa-fw {
+    left: 1em;
+}
+
+/*REGISTER/LOGIN*/
+.input-group {
+    margin: 0em 0em 0em 30em;
+    padding: 0.8em;
+}
+
+.form-control {
+    margin: 0em 1em 0.8em;
+}
+
+.input-group-addon {
+    top: 0;
+}
+
+/*SIDEPROFILE BAR*/
+.sideprofile {
+    background:rgb(66, 172, 80);
+    opacity: 90%;
+    position: absolute;
+    margin: 0;
+    left: 3.5em;
+    width: 20em;
+    height: 100%;
+    top: 0;
+    z-index: 2;
+}
+
+.profilepic {
+    width: 13em;
+    height: 13em;
+    margin-top: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+    border-radius: 100em;
+    display: block;
+    overflow: hidden;    
+}
+
+.sideprofile ul {
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.sideprofile>li {
+    position:relative;
+    width: 17em;
+    display:table;
+    color:#ffffff;
+    text-decoration:none;
+    text-align: center;
+    list-style-type: none;
+}
+
+.username {
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8em;
+}
+
+.idnumber {
+    display:grid;
+    position:relative;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    padding-top: 0.8em;
+    margin-bottom: 0.8em;
+}
+
+.degree-text {
+    display:table;
+    margin-top: 1em;
+    font-size: 1em;
+    margin-bottom: 2em;
+}
+
+.profile-menu a{
+    text-transform: capitalize;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.profile-menu a .profile-text {
+    width:12em; 
+    margin-bottom: 1.5em;
+    color: white;
+    display:table;
+    margin-top: 1em;  
+    margin-left: -2.5em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+.profile-menu>li:hover a .profile-text{
+    color: rgb(66, 172, 80);
+    background-color: white;
+}
+
+.profile-menu a .lastprofile-text {
+    width:12em; 
+    margin-bottom: 3em;
+    color: white;
+    display:table;
+    margin-top: 1em;  
+    margin-left: -2.5em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+}
+
+.profile-menu>li:hover a .lastprofile-text{
+    color: rgb(66, 172, 80);
+    background-color: white;
+}
+
+.profile-menu li {
+    list-style-type: none;
+}
+
+.status-text {
+    position: relative;
+    padding-top:0.3em;
+    border: 0.05em solid white;
+    border-style: solid none none none;
+    font-size: 7em;
+    letter-spacing: 0.1em;
+    display:table;
+    user-select: none;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+/*
+hr.dotted {
+    border-top: 5px dotted rgb(255, 255, 255);
+    text-decoration: none;
+    user-select: none;
+} */
+
+
