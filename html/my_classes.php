@@ -1,20 +1,18 @@
 <?php
-    $dbh = new PDO ('sqlite:sql/tracker.db');
-    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $dbh = new PDO ('sqlite:sql/tracker.db');
+  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-
-    $stmt = $dbh->prepare("SELECT course, class FROM enrollment WHERE person_id = ?");
-    $stmt->execute(array($person_id=201902438));
-
-    $result = $stmt->fetchAll();
-    print_r($result);
+  $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
+  $stmt->execute(array($person_id=201902438));
+    
+  $result = $stmt->fetchAll();
 ?>
 <!DOCTYPE html> 
 <html>
       
   <head>
-    <title>COVID-19 Tracker</title>
+    <title>UP | Tracker</title>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" type="text/css" href="css/menu.css">
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">   <!-- ICONES FONT AWESOME -->
@@ -111,24 +109,22 @@
     </div>
 -->
   <ul class="sideprofile"> 
+  <?php foreach ($result as $row) { ?>
     <li>
       <div class="profilepic">
-        <img src="images/logo.png" alt="face" width=100% height=100%>
+        <img src="images/profilepics/<?php echo $row['person_id'] ?>.jpg" alt="face" width=100% height=100%>
       </div>
     </li>
-    
     <li>
-        <span class="username">Jane Doe Thoe McDoeFace</span>
+        <span class="username"><?php echo $row['person_name'] ?></span>
     </li>
-
     <li>
-      <span class="idnumber">202012345</span>
+      <span class="idnumber"><?php echo $row['person_id'] ?></span>
     </li>
-
     <li>
-      <span class="degree-text">Mestrado Integrado em Engenharia de Aquicultura</span>
+      <span class="degree-text"><?php echo $row['degree_name'] ?></span>
     </li>
-
+    <?php } ?>
     <ul class="profile-menu">
       <li>
         <a href="index.html">
@@ -154,8 +150,11 @@
     </li>
   </ul>
   <ul id="list">
-    <li></li>
-    <li></li>
+   <?php foreach ($result as $row) { ?>
+    <li>
+      <?php echo $row['course']?><?php echo $row['class']?>
+    </li>
+    <?php } ?>
   </ul>
   </body>
 </html>

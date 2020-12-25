@@ -17,7 +17,7 @@ body {
     background:rgb(143, 87, 68);
     position: fixed;
     top: 0;
-    height:40em;
+    height:100%;
     width:3.5em;
     overflow: hidden;
     transition: width .2s linear;
@@ -100,6 +100,7 @@ body {
     height: 100%;
     top: 0;
     z-index: 2;
+    flow:right
 }
 
 .profilepic {
@@ -216,4 +217,9 @@ hr.dotted {
 
 #list {
     display:block;
+    left: 20em;
+}
+
+#list li {
+    margin-left: 22em;
 }
