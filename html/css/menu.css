@@ -91,9 +91,9 @@ body {
 
 /*SIDEPROFILE BAR*/
 .sideprofile {
-    background:rgb(66, 172, 80);
+    background:rgb(34, 34, 34);
     opacity: 90%;
-    position: fixed;
+    position:fixed;
     margin: 0;
     left: 3.5em;
     width: 15em;
@@ -104,15 +104,16 @@ body {
 }
 
 .profilepic {
-    width: 5em;
-    height: 5em;
+    width: 7em;
+    height:7em;
     margin-top: 3em;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 2em;
-    border-radius: 100em;
+    border-radius: 50%;
     display: block;
-    overflow: hidden;    
+    overflow: hidden;
+    border: 0.5em black;    
 }
 
 .sideprofile ul {
@@ -157,17 +158,16 @@ body {
     font-size: 1em;
     font-weight: bold;
     text-decoration: none;
+    display:inline;
 }
+
 
 .profile-menu a .profile-text {
     width:12em; 
-    margin-bottom: 1.5em;
     color: white;
     display:table;
-    margin-top: 1em;  
     margin-left: -2.5em;
-    padding-top: 0.25em;
-    padding-bottom: 0.25em;
+    margin-bottom: 0.5em;
 }
 
 .profile-menu>li:hover a .profile-text{
@@ -215,11 +215,68 @@ hr.dotted {
     user-select: none;
 } */
 
-#list {
-    display:block;
-    left: 20em;
+
+/* TEXTABLE SECTION ON BODY */
+.textonbody {
+    color:white;
+    z-index: 100;
+    opacity: 100%;
+    position: relative;
+    left: 22em;
+    margin-top:2%;
+    margin-bottom:2%;
+    padding-left:5%;
+    width: 65%;
+    height: 100%;
 }
 
-#list li {
-    margin-left: 22em;
+.textonbody ul li p {
+    color: black;
+}
+
+.textonbody h1 {
+    padding-top: 2%;
+    color:rgb(143, 87, 68);
+    font-size: 3em;
+}
+
+.textonbody h2 {
+    padding-top: 2%;
+    color:rgb(143, 87, 68);
+    font-size: 1.5em;
+    padding-left:2%;
+    text-transform: capitalize;
+}
+
+.textonbody li {
+    list-style-type: none;
+}
+
+/* Login area*/
+
+#login-box {
+    margin-top: 3.5em;
+}
+
+#login-box div {
+    margin:2em 0;
+    width: fit-content;
+    height: fit-content;
+}
+
+#login-box div label {
+    font-weight: 200;
+}
+
+#login-box div a {
+    color: black;
+    font-size: 0.8em;
+    font-weight: 1000;
+    margin-top:1em;
+    padding-top:1em;
+}
+
+.button {
+    margin: auto 0;
+
 }

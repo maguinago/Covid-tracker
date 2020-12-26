@@ -128,19 +128,19 @@
     <ul class="profile-menu">
       <li>
         <a href="index.html">
-          <span class="profile-text">> My Courses</span>
+          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Courses</span>
         </a>
       </li>
       <!--<hr class="dotted">-->
       <li>
         <a href="index.html">
-          <span class="profile-text">> My Classes</span>
+          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Classes</span>
         </a>
       </li>
       <!--<hr class="dotted">-->
       <li>
         <a href="index.html">
-          <span class="lastprofile-text">> My Schedule</span>
+          <span class="lastprofile-text"><i class='fa fa-arrow-circle-right'></i> My Schedule</span>
         </a>
       </li>
     </ul>
@@ -149,12 +149,17 @@
       <span class="status-text">OK</span>
     </li>
   </ul>
-  <ul id="list">
-   <?php foreach ($result as $row) { ?>
-    <li>
-      <?php echo $row['course']?><?php echo $row['class']?>
-    </li>
-    <?php } ?>
-  </ul>
+  <div class="textonbody">
+  <h1>My Classes</h1>
+    <ul class="actualtext">
+      <?php foreach ($result as $row) { ?>
+        <li>
+          <h2>
+          <?php echo $row['course']?><?php echo $row['class']?>
+          </h2>
+        </li>
+      <?php } ?>
+    </ul>
+  </div>
   </body>
 </html>

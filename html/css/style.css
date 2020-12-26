@@ -1,144 +1,314 @@
-altered
-html {
-  --primary-color: #e4e4e4;
-
-  --background-color: #FDEEDE; /*rgb(196, 196, 196); */
-  --background-color-light: #FDEEDE;
-  --background-color-dark: #4F2902;
-
-  background-color: var(--background-color);
-  font-family: 'Merriweather', serif;
-
-  height: 100%;
-}
-
 body {
-  min-height: 100%;
-  max-width: 100%;
-  overflow-y: hidden; /* Disable horizontal scroll */
+    margin:0px;
+    padding:0px;
+    font-family: "Open Sans", arial;
+    background: rgb(255, 192, 167);
+    color:white;
+    font-weight:300;
+}
 
-  margin-left: 500px; /* Same as the width of the sidebar */
+/*BARRA VERTICAL MENU COM TAMANHO NAO EXPANDIDO*/
+.sidemenu {
+    background:rgb(143, 87, 68);
+    position: absolute;
+    top: 0;
+    height:100%;
+    width:3.5em;
+    overflow: hidden;
+    transition: width .2s linear;
+    z-index: 3;
+}
 
-  background-color: var(--background-color-light);
+/*TEXTO FICA VISIVEL/MENU EXPANDE QUANDO PASSA O RATO POR CIMA*/
+.sidemenu:hover {
+    position:absolute;
+    width: 12em;
+}
 
-  display: grid;
-  grid-template-rows: auto 1fr auto;
+.sidemenu li a {
+    width: 15.5em;  /*TAMANHO TOTAL DA BARRA EXPANDIDA*/
+    display:table;
+    color:#ffffff;
+    text-decoration:none;
+    font-size: 0.8em;
+    height: 4em;
+}
+
+.sidemenu li:hover a {
+    background-color:lightsalmon;  /*COR DA SELEÇÃO NO MENU*/
+}
+    
+.sidemenu ul{
+    padding: 0;
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.sidemenu-text  {
+    position:relative;
+    left: 3.5em;
+    top: 0.1em;
+}
+
+/*CENAS DO REGISTER, LOGIN, LOGOUT; FICAM NO FUNDO DA BARRA*/
+.sidemenu ul.loginout {
+    position:absolute;
+    bottom:0;
+}
+
+/*ICONE + TEXTO DAS CENAS FONT AWESOME QUE ESTÃO NO MENU*/
+.fa {
+    display: grid;
+    padding-top:1em;
+    padding-bottom: 1em;
+    text-align: center;
+    position:relative;
+}
+    
+/*FW É PARA DEFINIR UM ALINHAMENTO COMUM PARA AS CENAS DA FONT AWESOME*/
+.fa-fw {
+    left: 1em;
+}
+
+/*REGISTER/LOGIN*/
+.input-group {
+    margin: 0em 0em 0em 30em;
+    padding: 0.8em;
+}
+
+.form-control {
+    margin: 0em 1em 0.8em;
+}
+
+.input-group-addon {
+    top: 0;
+}
+
+/*SIDEPROFILE BAR*/
+.sideprofile {
+    background:rgb(66, 172, 80);
+    opacity: 100%;
+    position: absolute;
+    margin: 0;
+    left: 3.5em;
+    width: 20em;
+    height: 100%;
+    top: 0;
+    z-index: 2;
+}
+
+.profilepic {
+    width: 13em;
+    height: 13em;
+    margin-top: 3em;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+    border-radius: 100em;
+    display: block;
+    overflow: hidden;    
+}
+
+.sideprofile ul {
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.sideprofile li {
+    position:relative;
+    width: 17em;
+    display:table;
+    color:#ffffff;
+    text-decoration:none;
+    text-align: center;
+    list-style-type: none;
+}
+
+.username {
+    font-size: 1.5em;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8em;
+}
+
+.idnumber {
+    display:grid;
+    position:relative;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    padding-top: 0.8em;
+    margin-bottom: 0.8em;
+}
+
+.degree-text {
+    display:table;
+    margin-top: 1em;
+    font-size: 1em;
+    margin-bottom: 2em;
+}
+
+.profile-menu a {
+    text-transform: capitalize;
+    font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.profile-menu a .profile-text {
+    width:12em; 
+    color: white;
+    display:table;
+    margin-left: -2.5em;
+    margin-bottom: 0.5em;
+}
+
+.profile-menu>li:hover a .profile-text{
+    color: rgb(66, 172, 80);
+    background-color: white;
+}
+
+.profile-menu a .lastprofile-text {
+    width:12em; 
+    color: white;
+    display:table;
+    margin-left: -2.5em;
+    margin-bottom: 2em;
+}
+
+.profile-menu>li:hover a .lastprofile-text{
+    color: rgb(66, 172, 80);
+    background-color: white;
+}
+
+.profile-menu li {
+    list-style-type: none;
+}
+
+.status-text {
+    position: relative;
+    padding-top:0.3em;
+    border: 0.05em solid white;
+    border-style: solid none none none;
+    font-size: 7em;
+    letter-spacing: 0.1em;
+    display:table;
+    user-select: none;
+    margin-left: auto;
+    margin-right: auto;
+    
 }
 
 
-.h1_items {
-width: 2em;
-max-width: 2em;
+/* REGISTER/LOGIN */
+.overlay {
+	position: fixed;
+	z-index: 200;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.3);
+	width: 100%;
+	height: 100%;
+	transition: opacity 500ms;
+	visibility: hidden;
+    opacity: 0;
+    color: white;
+    user-select: none;
 }
 
-
-.profile {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  width: 350px;
-  background-color: lightgreen;
-  margin-left: 250px;
-  /*border: solid 1px; */
-  transition: transform 0.35s ease-out;
-}
-/* # */
-.profile a {
-  font-family: 'Merriweather', sans-serif;
+.overlay.overlay:onclick {
+    visibility: hidden;
+    opacity: 0;
 }
 
-.rightsidepanel {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  margin-left: 600px;
-  padding: 10px;
-  transition: left 0.35s ease-out;
-  /*border: solid 1px;*/
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
 }
 
-.profile {
-
-}
-/* on toggle*/
-.rightsidepanel.pushed {
-  left: -350px;
-}
-
-.hide {
-  transform:translateX(-350px);
-}
-
-#logo img {
-  width: 2em;
-  margin: 1em 2em 1em;
-  border: 0.2em solid black;
+.popup {
+	position: relative;
+    top: 50%;
+    margin-left:auto;
+    margin-right:auto;
+	transform: translate(0%, -50%);
+	padding: 5rem;
+	width: 20em;
+	background: rgb(143, 87, 68);
+    font-size: 0.8em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Libre Franklin', sans-serif;
+.fa-times{
+    color: white;
 }
 
-/**
- * Header
- **/
-
-body > header {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 250px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #4F2902;
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 3em;
+.popup_close {
+	position: absolute;
+	top: 1rem;
+	right: 1rem;
+	z-index: 201;
+	color: #000;
+	font-size: 1rem;
+    text-decoration: none;
 }
 
-body > header form {
-  display: grid;
-  grid-template-columns: auto auto;
+.popup_button{
+    display:inline-block; 
+    text-align: center;
+    margin-top: 1em;
+    padding-right: 20%;
+    padding-left: 20%;
+    border-radius: 6px;
+    font-size: 14px;
+    border: 2px solid rgb(143, 87, 68);
+    background-color: rgb(255, 192, 167);
+    margin: 0;
+    position: relative;
+    left: 50%;
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
 }
 
-body > header form input, body > header form a {
-  margin: 0.5em;
+.popup_button:hover{
+    background-color: rgb(214, 145, 118)
 }
 
-body > header form input[name=username],
-body > header form input[name=password]{
-  grid-column-end: span 2;
+form input {
+	display: table-cell;
+	padding: 0.8em 1em;
+    border: 1px solid rgb(143, 87, 68);
+    background-color: rgb(255, 212, 195);
+    width: auto;
 }
 
-body > header a {
-  color: var(--primary-color);
-  text-decoration: none;
+/* TEXTABLE SECTION ON BODY */
+.textonbody {
+    color:white;
+    z-index: 100;
+    opacity: 100%;
+    position: relative;
+    left: 26em;
+    margin-top:2%;
+    margin-bottom:2%;
+    padding-left:5%;
+    width: 65%;
+    height: 100%;
 }
 
-/**
- * Main Section
- **/
-
-body > section {
-  margin-left: 250px;
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 250px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 3em;
-  padding: 1em;
+.textonbody h1 {
+    padding-top: 2%;
+    color:rgb(143, 87, 68);
+    font-size: 3em;
 }
 
-/**
- * Footer
- **/
+.textonbody h2 {
+    padding-top: 2%;
+    color:rgb(143, 87, 68);
+    font-size: 1.5em;
+    padding-left:2%;
+    text-transform: capitalize;
+}
 
-body > footer {
-  background-color: var(--background-color-dark);
-
+.textonbody li {
+    list-style-type: none;
 }
