@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  $msg = $_SESSION["msg"];
+  unset($_SESSION["msg"]);
+?>
+
 <!DOCTYPE html> 
 <html>
       
@@ -15,7 +21,7 @@
       <ul>
 
         <li>                                   
-          <a href="index.html">
+          <a href="index.php">
             <i class="fa fa-home fa-lg fa-fw"></i>
             <span class="sidemenu-text">Home</span>
           </a>
@@ -29,9 +35,9 @@
         </li>   
           
         <li>
-          <a href="index.html">
+          <a href="faculties.php">
           <i class="fa fa-building-o fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Faculties</span>
+          <span class="sidemenu-text">Faculdades</span>
           </a>
         </li>
           
@@ -100,20 +106,23 @@
 -->
   <ul class="sideprofile"> 
    <div id="login-box">
-    
+    <span><?php  echo $msg; ?></span> <!-- Sucesso ou falha no registro -->
    <h2>Você não está logado ao sistema</h2>
-   <div>   
-        <label for="id">Número mecanográfico:</label><br>
-        <input type="text" placeholder="Id U.Porto" name="id"><br>
-    </div>
-    <div>
-        <label for="password">Senha:</label><br>
-        <input type="password" placeholder="Enter password" name="password"><br>
-    </div>
-    <div class="button">
-        <input type="submit" Value="Login">
-        <a href="register.php">1º Acesso</a>
-    </div>
+    <form action="" method="post">
+      <div>   
+            <label for="id">Número mecanográfico:</label><br>
+            <input type="text" placeholder="Id U.Porto" name="id"><br>
+        </div>
+        <div>
+            <label for="password">Senha:</label><br>
+            <input type="password" placeholder="Enter password" name="password"><br>
+        </div>
+        <div class="button">
+            <input type="submit" Value="Login">
+            <a href="register.php">1º Acesso</a>
+        </div>
+      </div>
+   </form>
   </ul>
   <div class="textonbody">
     <h1>COVID-19 Tracker</h1>

@@ -27,11 +27,11 @@ body {
 /*TEXTO FICA VISIVEL/MENU EXPANDE QUANDO PASSA O RATO POR CIMA*/
 .sidemenu:hover {
     position:absolute;
-    width: 13em;
+    width: 20em;
 }
 
 .sidemenu li a {
-    width: 15.5em;  /*TAMANHO TOTAL DA BARRA EXPANDIDA*/
+    width: 100em;  /*TAMANHO TOTAL DA BARRA EXPANDIDA*/
     display:table;
     color:#ffffff;
     text-decoration:none;
@@ -94,6 +94,7 @@ body {
     background:rgb(34, 34, 34);
     opacity: 90%;
     position:fixed;
+    display:initial;
     margin: 0;
     left: 3.5em;
     width: 15em;
@@ -228,30 +229,42 @@ hr.dotted {
     padding-left:5%;
     width: 65%;
     height: 100%;
+    margin-bottom:2em;
 }
 
 .textonbody ul li p {
     color: black;
+    text-align: justify;
+    text-justify: auto;
 }
 
 .textonbody h1 {
     padding-top: 2%;
     color:rgb(143, 87, 68);
-    font-size: 3em;
+    font-size: 2.5em;
+    margin-left: 1em;
 }
 
 .textonbody h2 {
     padding-top: 2%;
     color:rgb(143, 87, 68);
     font-size: 1.5em;
-    padding-left:2%;
     text-transform: capitalize;
 }
-
+.textonbody h3 {
+    color:black;
+    font-size: 1em;
+}
 .textonbody li {
-    list-style-type: none;
+    list-style-type: black;
+    margin-bottom:1em;
+    color:black;
+    margin-left: 1.2em;
 }
 
+.textonbody li a {
+    color:rgb(143, 87, 68);
+}
 /* Login area*/
 
 #login-box {

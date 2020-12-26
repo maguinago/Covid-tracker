@@ -19,6 +19,7 @@ DROP TABLE IF EXISTS classroom;
 DROP TABLE IF EXISTS janitor;
 DROP TABLE IF EXISTS covid;
 DROP TABLE IF EXISTS faculty;
+DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS person;
 
 --CREATE TABLEs
@@ -126,6 +127,14 @@ CREATE TABLE covid (
     result TEXT, 
     date DATETIME,
     CONSTRAINT test_result_valid CHECK (covid.result = 'positive' OR 'negative')
+);
+
+CREATE TABLE user (
+    name TEXT NOT NULL,
+    id INTEGER PRIMARY KEY REFERENCES person(id),
+    password VARCHAR,
+    CONSTRAINT id_exists CHECK (IF id EXISTS person(id)),
+    CONSTRAINT name_fk FOREIGN KEY (name) REFERENCES person(name)
 );
 --INSERTS
 

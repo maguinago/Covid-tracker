@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    $msg = $_SESSION["msg"];
+    unset($_SESSION["msg"]);
+?>
+
 <!DOCTYPE html> 
 <html>
       
@@ -8,14 +14,13 @@
     <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">   <!-- ICONES FONT AWESOME -->
     <!-- <script src="https://use.fontawesome.com/0090882658.js"></script> FONT AWESOME EM JAVASCRIPT!!! NAO USAR!!! -->
   </head>
-  
   <body>
     <!-- BARRA VERTICAL / MENU -->
     <section class="sidemenu"> 
       <ul>
 
         <li>                                   
-          <a href="index.html">
+          <a href="index.php">
             <i class="fa fa-home fa-lg fa-fw"></i>
             <span class="sidemenu-text">Home</span>
           </a>
@@ -29,7 +34,7 @@
         </li>   
           
         <li>
-          <a href="index.html">
+          <a href="faculties.php">
           <i class="fa fa-building-o fa-lg fa-fw"></i>
           <span class="sidemenu-text">Faculties</span>
           </a>
@@ -100,27 +105,30 @@
 -->
   <ul class="sideprofile"> 
    <section id="login-box">
+   <span><?php  echo $msg; ?></span> <!-- Sucesso ou falha no registro -->
     <h2>Faça seu registro</h2>
-        <div>
-            <label for="name">Nome completo:</label><br>
-            <input type="text" placeholder="Conforme no sigarra" name="name"><br>
-        </div>
-        <div>
-            <label for="id">Número mecanográfico:</label><br>
-            <input type="text" placeholder="Id U.Porto" name="id"><br>
-        </div>
-        <div>
-            <label for="id">Criar senha:</label><br>
-            <input type="password" placeholder="Enter password" name="password"><br>
-        </div>
-        <div>
-            <label for="id">Confirmar senha</label><br>
-            <input type="password" placeholder="Reenter password" name="confirm-password"><br>
-        </div>
-        <div class="button">
-            <input type="submit" Value="Registrar-se"><br>
-            <a href="index.php">Já estou registrado (logar)</a>
-        </div>
+        <form action="action_register.php" method="post">
+            <div>
+                <label for="name">Nome completo:</label><br>
+                <input type="text" placeholder="Conforme no sigarra" name="name"><br>
+            </div>
+            <div>
+                <label for="id">Número mecanográfico:</label><br>
+                <input type="text" placeholder="Id U.Porto" name="id"><br>
+            </div>
+            <div>
+                <label for="id">Criar senha:</label><br>
+                <input type="password" placeholder="Enter password" name="password"><br>
+            </div>
+            <div>
+                <label for="id">Confirmar senha</label><br>
+                <input type="password" placeholder="Reenter password" name="password2"><br>
+            </div>
+            <div class="button">
+                <input type="submit" Value="Registrar-se">
+                <a href="index.php">Login</a>
+            </div>
+        </form>
     </section>
   </ul>
   <div class="textonbody">
