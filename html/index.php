@@ -1,13 +1,13 @@
 <?php
   session_start();
-?>
 
-<?php
 include ('sections/header.php');
 include ('sections/sidemenu.php');
-/*if (id == null)*/
-include ('sections/registerlogin_popups.php');
-include ('sections/sideprofile.php'); ?>
+if (isset ($_SESSION["id"])) {
+  include ('sections/registerlogin_popups.php');
+}
+else
+  include ('sections/sideprofile.php') ?>
 
   <div class="overlay_body">
     <h1>COVID-19 Tracker</h1>
