@@ -1,0 +1,13 @@
+SECTIONS:
+database_start.php -> include para iniciar a base de dados;
+footer.php -> include para HTML + CSS footer;
+header.php -> include para HTML + CSS header;
+number_pages -> include com funções para calcular número máximo de páginas numa tabela;
+pagination.php -> include para transitar entre páginas;
+registerlogin_popup -> include para HTML + CSS do painel de login ou register;
+search.php -> include para HTML + CSS da barra de pesquisa;
+search_function.php -> include para procurar na base de dados (falta implementar junção com paginação);
+sidemenu.php -> include para painel de navegação lateral;
+sideprofile.php -> include com painel lateral de perfil básico;
+sideprofile_login.php -> include com painel lateral que sobrepõe o perfil para fazer login quando não está com sessão iniciada;
+sideprofile_register.php -> include com painel lateral que sobrepõe o perfil para fazer register.
