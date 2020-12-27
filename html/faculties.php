@@ -29,7 +29,7 @@
     <ul class="overlay_body_list">
     <?php foreach ($faculty as $row) { ?>
     <li>
-      <?php echo $row['acronym']?>
+      <?php echo $row['name']?><br><p><?php echo $row['address']?></p>
     </li>
     <?php } ?>
   </ul>
