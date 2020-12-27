@@ -8,7 +8,7 @@ SELECT DISTINCT attendance.person_id as notify_covid_contact
         FROM occurrence     --been confirmed infected was present. This way, you have the
         JOIN                --start and end times for classes with infected people.
             (
-            SELECT *            --(2)all attendances of people that tested positive in the 10
+            SELECT *, classroom as sala           --(2)all attendances of people that tested positive in the 10
             FROM attendance      --days prior to their covid exam
             JOIN
                 (
@@ -20,7 +20,7 @@ SELECT DISTINCT attendance.person_id as notify_covid_contact
             JOIN covid USING (person_id) 
             WHERE attendance.swipe BETWEEN date(covid.date , '-10 days') AND covid.date
             ) --(2)
-        ON swipe BETWEEN occurrence.start_time AND occurrence.end_time
+        ON swipe BETWEEN occurrence.start_time AND occurrence.end_time AND sala = occurrence.classroom
         ) --(3)
     ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time
 JOIN occurrence

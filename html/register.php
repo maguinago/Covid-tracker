@@ -114,7 +114,7 @@
             </div>
             <div>
                 <label for="id">Número mecanográfico:</label><br>
-                <input type="integer" placeholder="Id U.Porto" name="id"><br>
+                <input type="number" placeholder="Id U.Porto" name="id"><br>
             </div>
             <div>
                 <label for="id">Criar senha:</label><br>

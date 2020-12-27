@@ -8,6 +8,46 @@
   $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
   $stmt->execute(array($_SESSION["id"]));
   
+
+  function contactedSickPerson ($id) {
+    global $dbh;
+    $stmt2 = $dbh->prepare('SELECT id FROM user WHERE id=? AND password=?');
+    $stmt2->execute(array($id,hash('sha256','$password')));
+    return $stmt2-> fetch();
+}
+
+  $stmt2 = $dbh->prepare(
+  "SELECT DISTINCT attendance.person_id as notify_covid_contact
+  FROM attendance --(4)return attendances (id) within those times and in those
+  JOIN            --classrooms (meaning same class), except who tested positive,
+      (           --to be notified as a contact and isolate + contact SNS
+      SELECT *           --(3)join all occurrences to the ones where someone that has
+      FROM occurrence     --been confirmed infected was present. This way, you have the
+      JOIN                --start and end times for classes with infected people.
+          (
+          SELECT *            --(2)all attendances of people that tested positive in the 10
+          FROM attendance      --days prior to their covid exam
+          JOIN
+              (
+              SELECT *          --(1)returns everyone who tested positive
+              FROM covid
+              WHERE covid.result = 'positive'
+              )--(1)
+          USING (person_id)
+          JOIN covid USING (person_id) 
+          WHERE attendance.swipe BETWEEN date(covid.date , '-10 days') AND covid.date
+          ) --(2)
+      ON swipe BETWEEN occurrence.start_time AND occurrence.end_time
+      ) --(3)
+  ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time
+JOIN occurrence
+ON attendance.classroom = occurrence.classroom
+LEFT JOIN covid USING (person_id)
+WHERE covid.result IS NOT 'positive'"
+);
+  $stmt2->execute(array());
+  $sick = $stmt2->fetchAll();
+
   $result = $stmt->fetchAll();
 ?>
 
@@ -81,13 +121,13 @@
       <ul class="loginout">
         <?php if (!isset ($_SESSION["id"])) { ?>
         <li>                                 
-          <a href="index.html">
+          <a href="register.php">
           <i class="fa fa-user fa-lg fa-fw"></i>
           <span class="sidemenu-text">Register</span>
           </a>
         </li>  
         <li>
-          <a href="index.html">
+          <a href="index.php">
             <i class="fa fa-sign-in fa-lg fa-fw"></i>
             <span class="sidemenu-text">Login</span>
           </a>
@@ -113,27 +153,28 @@
 -->
 <?php if (!isset ($_SESSION["id"])) { ?>
 <ul class="sideprofile"> 
-   <div id="login-box">
+   <section id="login-box">
     <span><?php  echo $msg; ?></span> <!-- Sucesso ou falha no registro -->
-   <h2>Você não está logado ao sistema</h2>
-    <form action="action_login.php" method="post">
-      <div>   
-            <label for="id">Número mecanográfico:</label><br>
-            <input type="integer" placeholder="Id U.Porto" name="id"><br>
-        </div>
-        <div>
-            <label for="password">Senha:</label><br>
-            <input type="password" placeholder="Enter password" name="password"><br>
-        </div>
-        <div class="button">
-            <input type="submit" Value="Login">
-            <a href="register.php">1º Acesso</a>
-        </div>
-      </div>
-   </form>
+    <h2>Você não está logado ao sistema</h2>
+      <form action="action_login.php" method="post">
+        <div>   
+              <label for="id">Número mecanográfico:</label><br>
+              <input type="integer" placeholder="Id U.Porto" name="id"><br>
+          </div>
+          <div>
+              <label for="password">Senha:</label><br>
+              <input type="password" placeholder="Enter password" name="password"><br>
+          </div>
+          <div class="button">
+              <input type="submit" Value="Login">
+              <a href="register.php">1º Acesso</a>
+          </div>
+      </form>
+   </section>
+   </ul>
     <?php } else { ?>
-      <ul class="sideprofile2"> 
-  <?php foreach ($result as $row) { ?>
+    <ul class="sideprofile2"> 
+    <?php foreach ($result as $row) { ?>
     <li>
       <div class="profilepic">
         <img src="images/profilepics/<?php echo $row['person_id'] ?>.jpg" alt="face" width=100% height=100%>
@@ -151,20 +192,20 @@
     <?php } ?>
     <ul class="profile-menu">
       <li>
-        <a href="index.html">
-          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Courses</span>
-        </a>
-      </li>
-      <!--<hr class="dotted">-->
-      <li>
-        <a href="index.html">
+        <a href="my_classes.php">
           <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Classes</span>
         </a>
       </li>
       <!--<hr class="dotted">-->
       <li>
-        <a href="index.html">
-          <span class="lastprofile-text"><i class='fa fa-arrow-circle-right'></i> <?php echo $_SESSION["id"];?></span>
+        <a href="attendance.php">
+          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Log</span>
+        </a>
+      </li>
+      <!--<hr class="dotted">-->
+      <li>
+        <a href="reportcovid.php">
+          <span class="lastprofile-text"><i class='fa fa-arrow-circle-right'></i> Report covid</span>
         </a>
       </li>
     </ul>
