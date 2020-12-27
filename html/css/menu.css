@@ -132,6 +132,36 @@ body {
     list-style-type: none;
 }
 
+.sideprofile2 {
+    background:rgb(66, 172, 80);
+    opacity: 90%;
+    position:fixed;
+    display:initial;
+    margin: 0;
+    left: 3.5em;
+    width: 15em;
+    height: 100%;
+    top: 0;
+    z-index: 2;
+    flow:right
+}
+
+.sideprofile2 ul {
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.sideprofile2>li {
+    position:relative;
+    width: 12em;
+    display:table;
+    color:#ffffff;
+    text-decoration:none;
+    text-align: center;
+    list-style-type: none;
+}
+
+
 .username {
     font-size: 1.5em;
     letter-spacing: 0.1em;
@@ -287,9 +317,4 @@ hr.dotted {
     font-weight: 1000;
     margin-top:1em;
     padding-top:1em;
-}
-
-.button {
-    margin: auto 0;
-
 }

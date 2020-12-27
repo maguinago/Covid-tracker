@@ -13,7 +13,7 @@
     function loginIsValid ($id,$password) {
         global $dbh;
         $stmt = $dbh->prepare('SELECT id FROM user WHERE id=? AND password=?');
-        $stmt->execute(array($id,hash('sha256',$password)));
+        $stmt->execute(array($id,hash('sha256','$password')));
         return $stmt-> fetch();
     }
 
@@ -27,6 +27,6 @@
         header ("Location: index.php");
     } else {
         $_SESSION["msg"] = "Falha no login!";
-        header ("Location: home.php");
+        header ("Location: index.php");
     }
 ?>

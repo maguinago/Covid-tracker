@@ -93,9 +93,9 @@
           </a>
         </li>
         <?php } else { ?>
-          <form action=""></form>
-          <span><?php echo $_SESSION["id"]; ?></span>
-          <input type="submit" value="logout">
+          <form action="action_logout.php">
+          <input type="submit" value="Logout">
+          </form>
        <?php } ?>
       </ul>
     </section>
@@ -111,7 +111,28 @@
       <input class="form-control" type="password" placeholder="Password">
     </div>
 -->
+<?php if (!isset ($_SESSION["id"])) { ?>
 <ul class="sideprofile"> 
+   <div id="login-box">
+    <span><?php  echo $msg; ?></span> <!-- Sucesso ou falha no registro -->
+   <h2>Você não está logado ao sistema</h2>
+    <form action="action_login.php" method="post">
+      <div>   
+            <label for="id">Número mecanográfico:</label><br>
+            <input type="integer" placeholder="Id U.Porto" name="id"><br>
+        </div>
+        <div>
+            <label for="password">Senha:</label><br>
+            <input type="password" placeholder="Enter password" name="password"><br>
+        </div>
+        <div class="button">
+            <input type="submit" Value="Login">
+            <a href="register.php">1º Acesso</a>
+        </div>
+      </div>
+   </form>
+    <?php } else { ?>
+      <ul class="sideprofile2"> 
   <?php foreach ($result as $row) { ?>
     <li>
       <div class="profilepic">
@@ -122,7 +143,7 @@
         <span class="username"><?php echo $row['person_name'] ?></span>
     </li>
     <li>
-      <span class="idnumber"><?php echo $row['person_id'] ?></span>
+      <span class="idnumber"><?php echo $_SESSION["id"] ?></span>
     </li>
     <li>
       <span class="degree-text"><?php echo $row['degree_name'] ?></span>
@@ -147,6 +168,8 @@
         </a>
       </li>
     </ul>
+  </ul>
+    <?php } ?>
   <div class="textonbody">
     <h1>COVID-19 Tracker</h1>
     <ul class="actualtext">
