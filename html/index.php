@@ -7,48 +7,9 @@
 
   $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
   $stmt->execute(array($_SESSION["id"]));
-  
-
-  function contactedSickPerson ($id) {
-    global $dbh;
-    $stmt2 = $dbh->prepare('SELECT id FROM user WHERE id=? AND password=?');
-    $stmt2->execute(array($id,hash('sha256','$password')));
-    return $stmt2-> fetch();
-}
-
-  $stmt2 = $dbh->prepare(
-  "SELECT DISTINCT attendance.person_id as notify_covid_contact
-  FROM attendance --(4)return attendances (id) within those times and in those
-  JOIN            --classrooms (meaning same class), except who tested positive,
-      (           --to be notified as a contact and isolate + contact SNS
-      SELECT *           --(3)join all occurrences to the ones where someone that has
-      FROM occurrence     --been confirmed infected was present. This way, you have the
-      JOIN                --start and end times for classes with infected people.
-          (
-          SELECT *            --(2)all attendances of people that tested positive in the 10
-          FROM attendance      --days prior to their covid exam
-          JOIN
-              (
-              SELECT *          --(1)returns everyone who tested positive
-              FROM covid
-              WHERE covid.result = 'positive'
-              )--(1)
-          USING (person_id)
-          JOIN covid USING (person_id) 
-          WHERE attendance.swipe BETWEEN date(covid.date , '-10 days') AND covid.date
-          ) --(2)
-      ON swipe BETWEEN occurrence.start_time AND occurrence.end_time
-      ) --(3)
-  ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time
-JOIN occurrence
-ON attendance.classroom = occurrence.classroom
-LEFT JOIN covid USING (person_id)
-WHERE covid.result IS NOT 'positive'"
-);
-  $stmt2->execute(array());
-  $sick = $stmt2->fetchAll();
-
   $result = $stmt->fetchAll();
+
+
 ?>
 
 <!DOCTYPE html> 
@@ -172,8 +133,8 @@ WHERE covid.result IS NOT 'positive'"
       </form>
    </section>
    </ul>
-    <?php } else { ?>
-    <ul class="sideprofile2"> 
+    <?php } else { if (!isset ($_SESSION["sick"])) {?>
+    <ul class="sideprofile2"> <?php } else { ?> <ul class="sideprofile3">  <?php } ?>
     <?php foreach ($result as $row) { ?>
     <li>
       <div class="profilepic">
@@ -216,6 +177,7 @@ WHERE covid.result IS NOT 'positive'"
     <ul class="actualtext">
       <li>
         <h2>O que é o Covid-19</h2>
+        <h3><?php echo $_SESSION["sick"];?></h3>
         <p>Os coronavírus pertencem à família Coronaviridae que integra vírus que podem causar infeção no 
           Homem, noutros mamíferos (por exemplo nos morcegos, camelos, civetas) e nas aves. Até à data, 
           conhecemos oito coronavírus que infetam e podem causar doença no Homem. Normalmente, estas 

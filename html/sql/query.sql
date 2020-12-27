@@ -1,5 +1,7 @@
 -- select every student that has been in the same class occurrence
 -- as an infected student in the 10 days prior to their positive test
+"SELECT * FROM
+(
 SELECT DISTINCT attendance.person_id as notify_covid_contact
     FROM attendance --(4)return attendances (id) within those times and in those
     JOIN            --classrooms (meaning same class), except who tested positive,
@@ -27,6 +29,7 @@ JOIN occurrence
 ON attendance.classroom = occurrence.classroom
 LEFT JOIN covid USING (person_id)
 WHERE covid.result IS NOT 'positive'
+) WHERE notify_covid_contact=?"
 ;
 
 

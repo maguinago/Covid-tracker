@@ -161,7 +161,34 @@ body {
     list-style-type: none;
 }
 
+.sideprofile3 {
+    background:rgb(236, 117, 5);
+    opacity: 90%;
+    position:fixed;
+    display:initial;
+    margin: 0;
+    left: 3.5em;
+    width: 15em;
+    height: 100%;
+    top: 0;
+    z-index: 2;
+    flow:right
+}
 
+.sideprofile3 ul {
+    text-transform: capitalize;
+    text-align: center;
+}
+
+.sideprofile3>li {
+    position:relative;
+    width: 12em;
+    display:table;
+    color:#ffffff;
+    text-decoration:none;
+    text-align: center;
+    list-style-type: none;
+}
 .username {
     font-size: 1.5em;
     letter-spacing: 0.1em;

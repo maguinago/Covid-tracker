@@ -24,9 +24,53 @@
     # - remain in login page and show error message
     if (loginIsValid($id, $password)) {
         $_SESSION["id"] = $id;
-        header ("Location: index.php");
     } else {
         $_SESSION["msg"] = "Falha no login!";
-        header ("Location: index.php");
     }
+    #if person logging in contacted a sick person
+    #- create a session attribute for sick contact
+    #else
+    #- do nothing
+    function contactedSickPerson ($id) {
+        global $dbh;
+        $stmt2 = $dbh->prepare("SELECT * FROM
+        (SELECT DISTINCT attendance.person_id as notify_covid_contact
+            FROM attendance --(4)return attendances (id) within those times and in those
+            JOIN            --classrooms (meaning same class), except who tested positive,
+                (           --to be notified as a contact and isolate + contact SNS
+                SELECT *           --(3)join all occurrences to the ones where someone that has
+                FROM occurrence     --been confirmed infected was present. This way, you have the
+                JOIN                --start and end times for classes with infected people.
+                    (
+                    SELECT *, classroom as sala           --(2)all attendances of people that tested positive in the 10
+                    FROM attendance      --days prior to their covid exam
+                    JOIN
+                        (
+                        SELECT *          --(1)returns everyone who tested positive
+                        FROM covid
+                        WHERE covid.result = 'positive'
+                        )--(1)
+                    USING (person_id)
+                    JOIN covid USING (person_id) 
+                    WHERE attendance.swipe BETWEEN date(covid.date , '-10 days') AND covid.date
+                    ) --(2)
+                ON swipe BETWEEN occurrence.start_time AND occurrence.end_time AND sala = occurrence.classroom
+                ) --(3)
+            ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time
+        JOIN occurrence
+        ON attendance.classroom = occurrence.classroom
+        LEFT JOIN covid USING (person_id)
+        WHERE covid.result IS NOT 'positive'
+        ) WHERE notify_covid_contact=?");
+        $stmt2->execute(array($id));
+        return $stmt2-> fetch();
+    }   
+
+
+    if (contactedSickPerson($id)) {
+        $_SESSION["sick"] = "Estivestes em contacto com um infetado. Contacte o SNS!";
+      } else {
+        $_SESSION["msg"] = "Use máscara e álcool gel!";
+      }
+header('Location: index.php')
 ?>
