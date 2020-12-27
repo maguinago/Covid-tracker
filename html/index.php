@@ -6,7 +6,7 @@
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
-  $stmt->execute(array($person_id=201902438));
+  $stmt->execute(array($_SESSION["id"]));
   
   $result = $stmt->fetchAll();
 ?>
@@ -143,7 +143,7 @@
       <!--<hr class="dotted">-->
       <li>
         <a href="index.html">
-          <span class="lastprofile-text"><i class='fa fa-arrow-circle-right'></i> My Schedule</span>
+          <span class="lastprofile-text"><i class='fa fa-arrow-circle-right'></i> <?php echo $_SESSION["id"];?></span>
         </a>
       </li>
     </ul>

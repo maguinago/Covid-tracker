@@ -12,7 +12,7 @@
     #verify id and password
     function loginIsValid ($id,$password) {
         global $dbh;
-        $stmt = $dbh->prepare("SELECT id FROM user WHERE id=? AND password=?");
+        $stmt = $dbh->prepare('SELECT id FROM user WHERE id=? AND password=?');
         $stmt->execute(array($id,hash('sha256',$password)));
         return $stmt-> fetch();
     }
@@ -22,11 +22,11 @@
     # - redirect for home page if
     #else
     # - remain in login page and show error message
-     if (loginIsValid($id, $password)) {
+    if (loginIsValid($id, $password)) {
         $_SESSION["id"] = $id;
         header ("Location: index.php");
-     } else {
+    } else {
         $_SESSION["msg"] = "Falha no login!";
         header ("Location: home.php");
-     }
+    }
 ?>
