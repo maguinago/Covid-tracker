@@ -1,10 +1,12 @@
 body {
-    margin:0px;
-    padding:0px;
+    margin-left: 0;
     font-family: "Open Sans", arial;
-    background: rgb(255, 192, 167);
+    background: rgb(221, 171, 151);
     color:white;
     font-weight:300;
+    height: 100%;
+    padding-bottom:80px;
+    overflow: hidden;
 }
 
 /*BARRA VERTICAL MENU COM TAMANHO NAO EXPANDIDO*/
@@ -13,16 +15,16 @@ body {
     position: absolute;
     top: 0;
     height:100%;
-    width:3.5em;
+    width:3%;
     overflow: hidden;
     transition: width .2s linear;
-    z-index: 3;
+    z-index: 5;
 }
 
 /*TEXTO FICA VISIVEL/MENU EXPANDE QUANDO PASSA O RATO POR CIMA*/
 .sidemenu:hover {
     position:absolute;
-    width: 12em;
+    width: 10%;
 }
 
 .sidemenu li a {
@@ -30,7 +32,7 @@ body {
     display:table;
     color:#ffffff;
     text-decoration:none;
-    font-size: 0.8em;
+    font-size: 80%;
     height: 4em;
 }
 
@@ -59,29 +61,32 @@ body {
 /*ICONE + TEXTO DAS CENAS FONT AWESOME QUE ESTÃO NO MENU*/
 .fa {
     display: grid;
-    padding-top:1em;
-    padding-bottom: 1em;
+    padding-top:9%;
+    padding-bottom: 9%;
     text-align: center;
     position:relative;
 }
     
 /*FW É PARA DEFINIR UM ALINHAMENTO COMUM PARA AS CENAS DA FONT AWESOME*/
 .fa-fw {
-    left: 1em;
+    left: 9%;
 }
 
 /*REGISTER/LOGIN*/
-.input-group {
-    margin: 0em 0em 0em 30em;
-    padding: 0.8em;
+.fa-times{
+    color: white;
 }
 
-.form-control {
+form input {
+	display: table-cell;
+	padding: 0.8em 1em;
+    border: 1px solid rgb(143, 87, 68);
+    background-color: rgb(255, 212, 195);
+    width: auto;
+}
+
+.form-rl {
     margin: 0em 1em 0.8em;
-}
-
-.input-group-addon {
-    top: 0;
 }
 
 /*SIDEPROFILE BAR*/
@@ -90,8 +95,20 @@ body {
     opacity: 100%;
     position: absolute;
     margin: 0;
-    left: 3.5em;
-    width: 20em;
+    left: 3%;
+    width: 17.3%;
+    height: 100%;
+    top: 0;
+    z-index: 2;
+}
+
+.sideprofile_loginregister {
+    background:rgb(119, 119, 119);
+    opacity: 100%;
+    position: absolute;
+    margin: 0;
+    left: 3%;
+    width: 17.3%;
     height: 100%;
     top: 0;
     z-index: 2;
@@ -161,7 +178,7 @@ body {
     margin-bottom: 0.5em;
 }
 
-.profile-menu>li:hover a .profile-text{
+.profile-menu li:hover a .profile-text{
     color: rgb(66, 172, 80);
     background-color: white;
 }
@@ -174,7 +191,7 @@ body {
     margin-bottom: 2em;
 }
 
-.profile-menu>li:hover a .lastprofile-text{
+.profile-menu li:hover a .lastprofile-text{
     color: rgb(66, 172, 80);
     background-color: white;
 }
@@ -201,21 +218,20 @@ body {
 /* REGISTER/LOGIN */
 .overlay {
 	position: fixed;
-	z-index: 200;
+	z-index: 4;
 	top: 0;
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background: rgba(0, 0, 0, 0.3);
 	width: 100%;
 	height: 100%;
-	transition: opacity 500ms;
 	visibility: hidden;
     opacity: 0;
     color: white;
     user-select: none;
 }
 
+/*POR IMPLEMENTAR AINDA*/
 .overlay.overlay:onclick {
     visibility: hidden;
     opacity: 0;
@@ -226,89 +242,101 @@ body {
 	opacity: 1;
 }
 
-.popup {
-	position: relative;
-    top: 50%;
-    margin-left:auto;
-    margin-right:auto;
-	transform: translate(0%, -50%);
-	padding: 5rem;
-	width: 20em;
-	background: rgb(143, 87, 68);
-    font-size: 0.8em;
-}
 
-.fa-times{
-    color: white;
-}
 
-.popup_close {
-	position: absolute;
-	top: 1rem;
-	right: 1rem;
-	z-index: 201;
-	color: #000;
-	font-size: 1rem;
-    text-decoration: none;
-}
 
-.popup_button{
-    display:inline-block; 
-    text-align: center;
-    margin-top: 1em;
-    padding-right: 20%;
-    padding-left: 20%;
-    border-radius: 6px;
-    font-size: 14px;
-    border: 2px solid rgb(143, 87, 68);
-    background-color: rgb(255, 192, 167);
-    margin: 0;
-    position: relative;
-    left: 50%;
-    -ms-transform: translateX(-50%);
-    transform: translateX(-50%);
-}
 
-.popup_button:hover{
-    background-color: rgb(214, 145, 118)
-}
 
-form input {
-	display: table-cell;
-	padding: 0.8em 1em;
-    border: 1px solid rgb(143, 87, 68);
-    background-color: rgb(255, 212, 195);
-    width: auto;
-}
 
-/* TEXTABLE SECTION ON BODY */
-.textonbody {
-    color:white;
-    z-index: 100;
+
+
+/* SECTION THAT PERMITS TEXT ON BODY */
+.overlay_body {
+    z-index: 1;
     opacity: 100%;
     position: relative;
-    left: 26em;
     margin-top:2%;
     margin-bottom:2%;
-    padding-left:5%;
-    width: 65%;
-    height: 100%;
+    padding-left:5%;  
+    padding-bottom: 20%;  
+    width: 100%;
+    background-color: rgb(255, 192, 167);
 }
 
-.textonbody h1 {
-    padding-top: 2%;
+.overlay_body h1 {
+    padding-top: 3%;
+    padding-left:25%;
     color:rgb(143, 87, 68);
     font-size: 3em;
+    margin-bottom: 4%;
 }
 
-.textonbody h2 {
+.overlay_body_text h2 {
     padding-top: 2%;
+    padding-left:22%;
     color:rgb(143, 87, 68);
     font-size: 1.5em;
     padding-left:2%;
     text-transform: capitalize;
 }
 
-.textonbody li {
-    list-style-type: none;
+.overlay_body_text li {
+    padding-left:20%;
+}
+
+.overlay_body_list {
+    font-size: 120%;
+    padding-left: 22%;
+}
+
+.overlay_body_list li{
+    margin-top: 1%;
+}
+
+
+
+
+
+
+
+
+.pagination {
+    position: absolute;
+    font-size: 150%;
+    text-align: center;
+    margin-left: 85%;
+    margin-top: 3.5%;
+    z-index: 100;
+    text-decoration: none;
+}
+
+.pagination a {
+    margin: 0.5em;
+}
+
+.pagination-text {
+    color:white;
+    text-decoration: none;
+}
+
+footer {
+    color:white;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 5%;
+    right:0;
+    margin-top: -1.5%;
+    padding-left: 23%;
+    z-index: 2;
+}
+
+.search{
+    position: absolute;
+    font-size: 150%;
+    text-align: center;
+    margin-left: 68%;
+    margin-top: 3.3%;
+    z-index: 100;
+    text-decoration: none;  
 }

@@ -1,7 +1,5 @@
 -- select every student that has been in the same class occurrence
 -- as an infected student in the 10 days prior to their positive test
-"SELECT * FROM
-(
 SELECT DISTINCT attendance.person_id as notify_covid_contact
     FROM attendance --(4)return attendances (id) within those times and in those
     JOIN            --classrooms (meaning same class), except who tested positive,
@@ -10,7 +8,7 @@ SELECT DISTINCT attendance.person_id as notify_covid_contact
         FROM occurrence     --been confirmed infected was present. This way, you have the
         JOIN                --start and end times for classes with infected people.
             (
-            SELECT *, classroom as sala           --(2)all attendances of people that tested positive in the 10
+            SELECT *            --(2)all attendances of people that tested positive in the 10
             FROM attendance      --days prior to their covid exam
             JOIN
                 (
@@ -22,14 +20,13 @@ SELECT DISTINCT attendance.person_id as notify_covid_contact
             JOIN covid USING (person_id) 
             WHERE attendance.swipe BETWEEN date(covid.date , '-10 days') AND covid.date
             ) --(2)
-        ON swipe BETWEEN occurrence.start_time AND occurrence.end_time AND sala = occurrence.classroom
+        ON swipe BETWEEN occurrence.start_time AND occurrence.end_time
         ) --(3)
     ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time
 JOIN occurrence
 ON attendance.classroom = occurrence.classroom
 LEFT JOIN covid USING (person_id)
 WHERE covid.result IS NOT 'positive'
-) WHERE notify_covid_contact=?"
 ;
 
 

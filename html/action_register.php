@@ -18,7 +18,7 @@
         global $dbh;
         global $con;
         $stmt = $dbh->prepare("INSERT INTO user (name,id,password) VALUES (?,?,?)");
-        $stmt->execute(array($name,$id,hash('sha256','$password')));
+        $stmt->execute(array($name,$id,hash('sha256',$password)));
     }
 
     if (strlen($id) < 6) {
@@ -40,7 +40,7 @@
     }
 
     try {
-    insertUser ($name,$id,hash('sha256','$password'));
+    insertUser ($name,$id,hash('sha256',$password));
     $_SESSION["msg"] = "Bem vindo(a)!";
     header('Location: index.php');
     } catch (PDOException $e) {
