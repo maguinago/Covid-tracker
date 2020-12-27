@@ -131,9 +131,9 @@ CREATE TABLE covid (
 
 CREATE TABLE user (
     name TEXT NOT NULL,
-    id INTEGER PRIMARY KEY REFERENCES person(id),
+    id INTEGER PRIMARY KEY,
     password VARCHAR,
-    CONSTRAINT id_exists CHECK (IF id EXISTS person(id)),
+    CONSTRAINT id_fk FOREIGN KEY (id) REFERENCES person(id),
     CONSTRAINT name_fk FOREIGN KEY (name) REFERENCES person(name)
 );
 --INSERTS

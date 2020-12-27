@@ -121,7 +121,7 @@
                 <input type="password" placeholder="Enter password" name="password"><br>
             </div>
             <div>
-                <label for="id">Confirmar senha</label><br>
+                <label for="id">Confirmar senha:</label><br>
                 <input type="password" placeholder="Reenter password" name="password2"><br>
             </div>
             <div class="button">

@@ -1,7 +1,14 @@
 <?php
   session_start();
-  $msg = $_SESSION["msg"];
-  unset($_SESSION["msg"]);
+
+  $dbh = new PDO ('sqlite:sql/tracker.db');
+  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+  $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
+  $stmt->execute(array($person_id=201902438));
+  
+  $result = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html> 
@@ -19,35 +26,30 @@
     <!-- BARRA VERTICAL / MENU -->
     <section class="sidemenu"> 
       <ul>
-
         <li>                                   
           <a href="index.php">
             <i class="fa fa-home fa-lg fa-fw"></i>
             <span class="sidemenu-text">Home</span>
           </a>
-        </li>   
-            
+        </li>
         <li>                                 
           <a href="index.html">
           <i class="fa fa-newspaper-o fa-lg fa-fw"></i>
           <span class="sidemenu-text">News</span>
           </a>
         </li>   
-          
         <li>
           <a href="faculties.php">
           <i class="fa fa-building-o fa-lg fa-fw"></i>
           <span class="sidemenu-text">Faculdades</span>
           </a>
         </li>
-          
         <li>
           <a href="index.html">
           <i class="fa fa-graduation-cap fa-lg fa-fw"></i>
           <span class="sidemenu-text">Degrees</span>
           </a>
         </li>
-          
         <li>
           <a href="index.html">
           <i class="fa fa-briefcase fa-lg fa-fw"></i>
@@ -77,6 +79,7 @@
         </li>   
       </ul>    
       <ul class="loginout">
+        <?php if (!isset ($_SESSION["id"])) { ?>
         <li>                                 
           <a href="index.html">
           <i class="fa fa-user fa-lg fa-fw"></i>
@@ -89,7 +92,11 @@
             <span class="sidemenu-text">Login</span>
           </a>
         </li>
-
+        <?php } else { ?>
+          <form action=""></form>
+          <span><?php echo $_SESSION["id"]; ?></span>
+          <input type="submit" value="logout">
+       <?php } ?>
       </ul>
     </section>
     <!-- FIM DE BARRA VERTICAL / MENU -->
@@ -104,26 +111,42 @@
       <input class="form-control" type="password" placeholder="Password">
     </div>
 -->
-  <ul class="sideprofile"> 
-   <div id="login-box">
-    <span><?php  echo $msg; ?></span> <!-- Sucesso ou falha no registro -->
-   <h2>Você não está logado ao sistema</h2>
-    <form action="" method="post">
-      <div>   
-            <label for="id">Número mecanográfico:</label><br>
-            <input type="text" placeholder="Id U.Porto" name="id"><br>
-        </div>
-        <div>
-            <label for="password">Senha:</label><br>
-            <input type="password" placeholder="Enter password" name="password"><br>
-        </div>
-        <div class="button">
-            <input type="submit" Value="Login">
-            <a href="register.php">1º Acesso</a>
-        </div>
+<ul class="sideprofile"> 
+  <?php foreach ($result as $row) { ?>
+    <li>
+      <div class="profilepic">
+        <img src="images/profilepics/<?php echo $row['person_id'] ?>.jpg" alt="face" width=100% height=100%>
       </div>
-   </form>
-  </ul>
+    </li>
+    <li>
+        <span class="username"><?php echo $row['person_name'] ?></span>
+    </li>
+    <li>
+      <span class="idnumber"><?php echo $row['person_id'] ?></span>
+    </li>
+    <li>
+      <span class="degree-text"><?php echo $row['degree_name'] ?></span>
+    </li>
+    <?php } ?>
+    <ul class="profile-menu">
+      <li>
+        <a href="index.html">
+          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Courses</span>
+        </a>
+      </li>
+      <!--<hr class="dotted">-->
+      <li>
+        <a href="index.html">
+          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Classes</span>
+        </a>
+      </li>
+      <!--<hr class="dotted">-->
+      <li>
+        <a href="index.html">
+          <span class="lastprofile-text"><i class='fa fa-arrow-circle-right'></i> My Schedule</span>
+        </a>
+      </li>
+    </ul>
   <div class="textonbody">
     <h1>COVID-19 Tracker</h1>
     <ul class="actualtext">
