@@ -5,6 +5,11 @@
   $stmt->execute(array($_SESSION["id"]));
   
   $result = $stmt->fetchAll();
+
+  $stmt3 = $dbh->prepare("SELECT * FROM attendance WHERE id =?");
+  $stmt3->execute(array(201902438));
+  $attendance = $stmt3->fetchAll();
+
 ?>
 <!DOCTYPE html> 
 <html>
@@ -36,12 +41,12 @@
 
   </ul>
   <div class="textonbody">
-  <h1>My Classes</h1>
+  <h1>My Attendances</h1>
     <ul class="actualtext">
-      <?php foreach ($result as $row) { ?>
+      <?php foreach ($attendance as $row) { ?>
         <li>
           <h2>
-          <?php echo $row['course']?><?php echo $row['class']?>
+          <?php echo $row ?>
           </h2>
         </li>
       <?php } ?>

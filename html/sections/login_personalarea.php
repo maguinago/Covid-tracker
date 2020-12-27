@@ -45,7 +45,7 @@
       </li>
       <!--<hr class="dotted">-->
       <li>
-        <a href="attendance.php">
+        <a href="my_log.php">
           <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Log</span>
         </a>
       </li>
@@ -54,6 +54,9 @@
         <a href="reportcovid.php">
           <span class="lastprofile-text"><i class='fa fa-arrow-circle-right'></i> Report covid</span>
         </a>
+      </li>
+      <li>
+        <p><?php echo $_SESSION["sick"];?></p>
       </li>
     </ul>
   </ul>

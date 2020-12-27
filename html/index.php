@@ -1,15 +1,9 @@
 <?php
-  session_start();
-
-  $dbh = new PDO ('sqlite:sql/tracker.db');
-  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  include ('sections/ss_pdo.php');
 
   $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
   $stmt->execute(array($_SESSION["id"]));
   $result = $stmt->fetchAll();
-
-
 ?>
 
 <!DOCTYPE html> 
@@ -25,81 +19,7 @@
   
   <body>
     <!-- BARRA VERTICAL / MENU -->
-    <section class="sidemenu"> 
-      <ul>
-        <li>                                   
-          <a href="index.php">
-            <i class="fa fa-home fa-lg fa-fw"></i>
-            <span class="sidemenu-text">Home</span>
-          </a>
-        </li>
-        <li>                                 
-          <a href="index.html">
-          <i class="fa fa-newspaper-o fa-lg fa-fw"></i>
-          <span class="sidemenu-text">News</span>
-          </a>
-        </li>   
-        <li>
-          <a href="faculties.php">
-          <i class="fa fa-building-o fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Faculdades</span>
-          </a>
-        </li>
-        <li>
-          <a href="index.html">
-          <i class="fa fa-graduation-cap fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Degrees</span>
-          </a>
-        </li>
-        <li>
-          <a href="index.html">
-          <i class="fa fa-briefcase fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Courses</span>
-          </a>
-        </li>        
-          
-        <li>
-          <a href="index.html">
-          <i class="fa fa-book fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Classes</span>
-          </a>
-        </li>   
-
-        <li>
-          <a href="index.html">
-          <i class="fa fa-calendar fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Schedule</span>
-          </a>
-        </li>   
-
-        <li>                                     
-          <a href="index.html">
-            <i class="fa fa-question-circle fa-lg fa-fw"></i>
-            <span class="sidemenu-text">Help</span>
-          </a>
-        </li>   
-      </ul>    
-      <ul class="loginout">
-        <?php if (!isset ($_SESSION["id"])) { ?>
-        <li>                                 
-          <a href="register.php">
-          <i class="fa fa-user fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Register</span>
-          </a>
-        </li>  
-        <li>
-          <a href="index.php">
-            <i class="fa fa-sign-in fa-lg fa-fw"></i>
-            <span class="sidemenu-text">Login</span>
-          </a>
-        </li>
-        <?php } else { ?>
-          <form action="action_logout.php">
-          <input type="submit" value="Logout">
-          </form>
-       <?php } ?>
-      </ul>
-    </section>
+  <?php include('sections/side_menu.php'); ?>
     <!-- FIM DE BARRA VERTICAL / MENU -->
 
 <!--
@@ -118,7 +38,6 @@
     <ul class="actualtext">
       <li>
         <h2>O que é o Covid-19</h2>
-        <h3><?php echo $_SESSION["sick"];?></h3>
         <p>Os coronavírus pertencem à família Coronaviridae que integra vírus que podem causar infeção no 
           Homem, noutros mamíferos (por exemplo nos morcegos, camelos, civetas) e nas aves. Até à data, 
           conhecemos oito coronavírus que infetam e podem causar doença no Homem. Normalmente, estas 

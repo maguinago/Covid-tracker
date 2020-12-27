@@ -1,3 +1,14 @@
+<?php
+  include ('sections/ss_pdo.php');
+
+  $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
+  $stmt->execute(array($_SESSION["id"]));
+  $result = $stmt->fetchAll();
+
+  
+?>
+
+
 <!DOCTYPE html> 
 <html>
       
@@ -10,81 +21,8 @@
   </head>
   <body>
     <!-- BARRA VERTICAL / MENU -->
-    <section class="sidemenu"> 
-      <ul>
+  <?php include('sections/side_menu.php'); ?>
 
-        <li>                                   
-          <a href="index.php">
-            <i class="fa fa-home fa-lg fa-fw"></i>
-            <span class="sidemenu-text">Home</span>
-          </a>
-        </li>   
-            
-        <li>                                 
-          <a href="index.html">
-          <i class="fa fa-newspaper-o fa-lg fa-fw"></i>
-          <span class="sidemenu-text">News</span>
-          </a>
-        </li>   
-          
-        <li>
-          <a href="faculties.php">
-          <i class="fa fa-building-o fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Faculties</span>
-          </a>
-        </li>
-          
-        <li>
-          <a href="index.html">
-          <i class="fa fa-graduation-cap fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Degrees</span>
-          </a>
-        </li>
-          
-        <li>
-          <a href="index.html">
-          <i class="fa fa-briefcase fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Courses</span>
-          </a>
-        </li>        
-          
-        <li>
-          <a href="index.html">
-          <i class="fa fa-book fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Classes</span>
-          </a>
-        </li>   
-
-        <li>
-          <a href="index.html">
-          <i class="fa fa-calendar fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Schedule</span>
-          </a>
-        </li>   
-
-        <li>                                     
-          <a href="index.html">
-            <i class="fa fa-question-circle fa-lg fa-fw"></i>
-            <span class="sidemenu-text">Help</span>
-          </a>
-        </li>   
-      </ul>    
-      <ul class="loginout">
-        <li>                                 
-          <a href="index.html">
-          <i class="fa fa-user fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Register</span>
-          </a>
-        </li>  
-        <li>
-          <a href="index.html">
-            <i class="fa fa-sign-in fa-lg fa-fw"></i>
-            <span class="sidemenu-text">Login</span>
-          </a>
-        </li>
-
-      </ul>
-    </section>
     <!-- FIM DE BARRA VERTICAL / MENU -->
 
 <!--
@@ -97,34 +35,11 @@
       <input class="form-control" type="password" placeholder="Password">
     </div>
 -->
-  <ul class="sideprofile"> 
-   <section id="login-box">
-    <h2>Faça seu registro</h2>
-        <div>
-            <label for="name">Nome completo:</label><br>
-            <input type="text" placeholder="Conforme no sigarra" name="name"><br>
-        </div>
-        <div>
-            <label for="id">Número mecanográfico:</label><br>
-            <input type="text" placeholder="Id U.Porto" name="id"><br>
-        </div>
-        <div>
-            <label for="id">Criar senha:</label><br>
-            <input type="password" placeholder="Enter password" name="password"><br>
-        </div>
-        <div>
-            <label for="id">Confirmar senha</label><br>
-            <input type="password" placeholder="Reenter password" name="confirm-password"><br>
-        </div>
-        <div class="button">
-            <input type="submit" Value="Registrar-se"><br>
-            <a href="index.php">Já estou registrado (logar)</a>
-        </div>
-    </section>
-  </ul>
+<?php include ('sections/login_personalarea.php'); ?>
+
   <div class="textonbody">
     <ul class="actualtext">
-    <h2>Faculties</h2>
+    <h2>Faculdades</h2>
         <h3>Caso precise acessar outros serviços, aceda ao site específico da sua faculdade.</h3>
       <li>
         <a href="http://www.fa.up.pt/">Faculdade de Arquitetura</a>
