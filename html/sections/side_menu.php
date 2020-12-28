@@ -61,9 +61,12 @@
           </a>
         </li>
         <?php } else { ?>
-          <form action="action_logout.php">
-          <input type="submit" value="Logout">
-          </form>
+          <li>
+          <a href="action_logout.php">
+            <i class="fa fa-sign-out fa-lg fa-fw"></i>
+            <span class="sidemenu-text">Logout</span>
+          </a>
+        </li>
        <?php } ?>
       </ul>
     </section>

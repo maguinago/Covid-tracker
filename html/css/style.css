@@ -57,6 +57,12 @@ body {
 .sidemenu ul.loginout {
     position:absolute;
     bottom:0;
+    color: white;
+}
+
+
+.sidemenu li:hover a {
+    background-color: lightsalmon;
 }
 
 /*ICONE + TEXTO DAS CENAS FONT AWESOME QUE ESTÃO NO MENU*/
@@ -142,7 +148,7 @@ body {
     text-align: center;
 }
 
-.sideprofile2 li {
+.sideprofile2>li {
     position:relative;
     width: 17em;
     display:table;
@@ -155,12 +161,11 @@ body {
 /* Profile styling if person contacted a sick person */
 .sideprofile3 {
     background:rgb(236, 117, 5);
-    opacity: 90%;
-    position:fixed;
-    display:initial;
+    opacity: 100%;
+    position: absolute;
     margin: 0;
-    left: 3.5em;
-    width: 15em;
+    left: 3%;
+    width: 17.3%;
     height: 100%;
     top: 0;
     z-index: 2;
@@ -173,7 +178,7 @@ body {
 
 .sideprofile3>li { 
     position:relative;
-    width: 12em;
+    width: 17em;
     display:table;
     color:#ffffff;
     text-decoration:none;
@@ -460,3 +465,4 @@ form input {
     border: 1px solid white;
     background-color: gray;
 }
+
