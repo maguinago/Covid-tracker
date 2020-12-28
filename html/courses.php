@@ -1,24 +1,31 @@
 <?php
-  $dbh = new PDO ('sqlite:sql/tracker.db');
-  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+  require_once ('sections/ss_pdo.php');
   include ('sections/number_pages.php');
-  /*GETTING THE NUMBER OF ELEMENTS/NUMBER OF PAGES*/
+  include ('sections/head.php');
+  include ('sections/side_menu.php');
   $n_pages = getNumberPagesCourses();
+  include ('sections/search.php');
+  include ('sections/search_function.php');
 
-  include ('sections/header.php');
-  include ('sections/sidemenu.php');
-  /*if (id == null)*/
-  include ('sections/registerlogin_popups.php');
-  include ('sections/sideprofile.php');
-  include ('sections/pagination.php'); 
-  
+  if(!empty($_GET['name'])){
+    $name = $_GET['name'];
+    $n_pages = getNumberPagesCoursesSearch($name);
+  }
+
+  include ('sections/pagination.php');
+
+
   $stmt = $dbh->prepare("SELECT * FROM course LIMIT ? OFFSET ?");
-  $stmt -> execute(array(10, ($page - 1) * 10));  
+  $stmt -> execute(array(10, ($page - 1) * 10)); 
   $course = $stmt->fetchAll();
-  ?>
-  
+
+
+  if(!empty($_GET['name'])){
+    $name = $_GET['name'];
+    $course = searchForCourse($name, $page);
+  }
+?>
+  <body>
 <div class="overlay_body">
   <h1>Courses</h1>
     <ul class="overlay_body_list">

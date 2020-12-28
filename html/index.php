@@ -1,50 +1,28 @@
 <?php
   include ('sections/ss_pdo.php');
 
-    $msg = $_SESSION["msg"];
-    unset($_SESSION["msg"]);
+  $msg = $_SESSION["msg"];
+  unset($_SESSION["msg"]);
 
-
-  include ('sections/personal_query.php');
-  // $stmt = $dbh->prepare(
-  // "SELECT person.id as person_ide, person.name as person_name, faculty.name as faculty_name, degree.name as degree_name
-  // FROM PERSON
-  // LEFT JOIN ENROLLMENT ON person.id = enrollment.person_id
-  // LEFT JOIN STUDENT ON person.id = student.id
-  // LEFT JOIN professor ON person.id = professor.id
-  // LEFT JOIN degree ON student.degree = degree.acronym
-  // LEFT JOIN faculty ON professor.faculty = faculty.acronym
-  // WHERE person_ide = ?"
-  // );
-  // $stmt->execute(array($_SESSION["id"]));
-  // $result = $stmt->fetchAll();
+  $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
+  $stmt->execute(array($_SESSION["id"]));
+  $result = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html> 
 <html>
       
-  <?php include ('sections/head.php'); ?>
+  <?php include('sections/head.php');?>
   
   <body>
     <!-- BARRA VERTICAL / MENU -->
   <?php include('sections/side_menu.php'); ?>
     <!-- FIM DE BARRA VERTICAL / MENU -->
 
-<!--
-    <div class="input-group margin-bottom-sm">
-      <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-      <input class="form-control" type="text" placeholder="Email address">
-    </div>
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-key"></i></span>
-      <input class="form-control" type="password" placeholder="Password">
-    </div>
--->
-
 <?php include ('sections/login_personalarea.php'); ?>
-  <div class="textonbody">
+  <div class="overlay_body">
     <h1>COVID-19 Tracker</h1>
-    <ul class="actualtext">
+    <ul class="overlay_body_list">
       <li>
         <h2>O que é o Covid-19</h2>
         <p>Os coronavírus pertencem à família Coronaviridae que integra vírus que podem causar infeção no 

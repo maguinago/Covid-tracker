@@ -1,20 +1,31 @@
 <?php
-  require_once ('sections/database_start.php');
+  require_once ('sections/ss_pdo.php');
   include ('sections/number_pages.php');
+  include ('sections/head.php');
+  include ('sections/side_menu.php');
   $n_pages = getNumberPagesClasses();
+  include ('sections/search.php');
+  include ('sections/search_function.php');
 
-  include ('sections/header.php');
-  include ('sections/sidemenu.php');
-  /*if (id == null)*/
-  include ('sections/registerlogin_popups.php');
-  include ('sections/sideprofile.php');
-  include ('sections/pagination.php'); 
-  
+  if(!empty($_GET['name'])){
+    $name = $_GET['name'];
+    $n_pages = getNumberPagesClassesSearch($name);
+  }
+
+  include ('sections/pagination.php');
+
+
   $stmt = $dbh->prepare("SELECT * FROM class LIMIT ? OFFSET ?");
-  $stmt -> execute(array(10, ($page - 1) * 10));  
+  $stmt -> execute(array(10, ($page - 1) * 10)); 
   $class = $stmt->fetchAll();
 
+
+  if(!empty($_GET['name'])){
+    $name = $_GET['name'];
+    $class = searchForClass($name, $page);
+  }
 ?>
+<body>
 <div class="overlay_body">
   <h1>Classes</h1>
   <ul class="overlay_body_list">

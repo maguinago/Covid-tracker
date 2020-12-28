@@ -1,26 +1,31 @@
 <?php
-  require_once ('sections/database_start.php');
+  require_once ('sections/ss_pdo.php');
   include ('sections/number_pages.php');
+  include ('sections/head.php');
+  include ('sections/side_menu.php');
   $n_pages = getNumberPagesSchedules();
+  include ('sections/search.php');
+  include ('sections/search_function.php');
 
-  include ('sections/header.php');
+  if(!empty($_GET['name'])){
+    $name = $_GET['name'];
+    $n_pages = getNumberPagesSchedulesSearch($name);
+  }
 
-  include ('sections/sidemenu.php');
-  /*if (id == null)*/
-  include ('sections/registerlogin_popups.php');
-  include ('sections/sideprofile.php');
   include ('sections/pagination.php');
+
 
   $stmt = $dbh->prepare("SELECT * FROM occurrence LIMIT ? OFFSET ?");
   $stmt -> execute(array(10, ($page - 1) * 10)); 
   $schedule = $stmt->fetchAll();
 
-  $name = $_GET['name'];
-  if(isset($name)){
-    $schedule = searchForSchedule($name);
+
+  if(!empty($_GET['name'])){
+    $name = $_GET['name'];
+    $schedule = searchForSchedule($name, $page);
   }
 ?>
-
+<body>
 <div class="overlay_body">
   <h1>Schedules</h1>
     <ul class="overlay_body_list">

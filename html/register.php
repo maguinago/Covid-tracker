@@ -15,16 +15,6 @@
     <?php include('sections/side_menu.php'); ?>
     <!-- FIM DE BARRA VERTICAL / MENU -->
 
-<!--
-    <div class="input-group margin-bottom-sm">
-      <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-      <input class="form-control" type="text" placeholder="Email address">
-    </div>
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-key"></i></span>
-      <input class="form-control" type="password" placeholder="Password">
-    </div>
--->
   <ul class="sideprofile"> 
    <section id="login-box">
    <span><?php  echo $msg; ?></span> <!-- Sucesso ou falha no registro -->
@@ -53,9 +43,9 @@
         </form>
     </section>
   </ul>
-  <div class="textonbody">
+  <div class="overlay_body">
     <h1>COVID-19 Tracker</h1>
-    <ul class="actualtext">
+    <ul class="overlay_body_list">
       <li>
         <h2>O que é o Covid-19</h2>
         <p>Os coronavírus pertencem à família Coronaviridae que integra vírus que podem causar infeção no 

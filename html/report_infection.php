@@ -16,20 +16,10 @@
     <?php include('sections/side_menu.php'); ?>
     <!-- FIM DE BARRA VERTICAL / MENU -->
 
-<!--
-    <div class="input-group margin-bottom-sm">
-      <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-      <input class="form-control" type="text" placeholder="Email address">
-    </div>
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-key"></i></span>
-      <input class="form-control" type="password" placeholder="Password">
-    </div>
--->
 <?php include ('sections/login_personalarea.php'); ?>
 
   </ul>
-  <div class="textonbody">
+  <div class="overlay_body">
   <h1>Reportar infecção para COVID-19</h1>
   <h3>Caso tenha testado positivo para o Covid-19, preencha o formulário abaixo.
       Lembramos que a inserção de informações falsas levarão à investigação e possível
