@@ -6,12 +6,6 @@
             <span class="sidemenu-text">Home</span>
           </a>
         </li>
-        <li>                                 
-          <a href="index.php">
-          <i class="fa fa-newspaper-o fa-lg fa-fw"></i>
-          <span class="sidemenu-text">News</span>
-          </a>
-        </li>   
         <li>
           <a href="faculties.php">
           <i class="fa fa-building-o fa-lg fa-fw"></i>
@@ -67,9 +61,12 @@
           </a>
         </li>
         <?php } else { ?>
-          <form action="action_logout.php">
-          <input type="submit" value="Logout">
-          </form>
+          <li>
+          <a href="action_logout.php">
+            <i class="fa fa-sign-out fa-lg fa-fw"></i>
+            <span class="sidemenu-text">Logout</span>
+          </a>
+        </li>
        <?php } ?>
       </ul>
     </section>
