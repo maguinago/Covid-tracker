@@ -312,6 +312,7 @@ body {
     font-size: 1.5em;
     padding-left:2%;
     text-transform: capitalize;
+    left:100em;
 }
 
 .overlay_body_text li {

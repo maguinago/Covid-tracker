@@ -23,13 +23,13 @@ if (!isset ($_SESSION["sick"])) {?>
     <?php } ?>
     <ul class="profile-menu">
       <li>
-        <a href="my_classes.php">
-          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Classes</span>
+        <a href="my_lectures.php">
+          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Lectures</span>
         </a>
       </li>
       <!--<hr class="dotted">-->
       <li>
-        <a href="attendance.php">
+        <a href="attendance_insert.php">
           <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> Insert Attendance</span>
         </a>
       </li>
