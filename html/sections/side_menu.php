@@ -7,7 +7,7 @@
           </a>
         </li>
         <li>                                 
-          <a href="index.html">
+          <a href="index.php">
           <i class="fa fa-newspaper-o fa-lg fa-fw"></i>
           <span class="sidemenu-text">News</span>
           </a>
@@ -19,34 +19,34 @@
           </a>
         </li>
         <li>
-          <a href="index.html">
+          <a href="degrees.php">
           <i class="fa fa-graduation-cap fa-lg fa-fw"></i>
           <span class="sidemenu-text">Degrees</span>
           </a>
         </li>
         <li>
-          <a href="index.html">
+          <a href="courses.php">
           <i class="fa fa-briefcase fa-lg fa-fw"></i>
           <span class="sidemenu-text">Courses</span>
           </a>
         </li>        
           
         <li>
-          <a href="index.html">
+          <a href="classes.php">
           <i class="fa fa-book fa-lg fa-fw"></i>
           <span class="sidemenu-text">Classes</span>
           </a>
         </li>   
 
         <li>
-          <a href="index.html">
+          <a href="schedule.php">
           <i class="fa fa-calendar fa-lg fa-fw"></i>
           <span class="sidemenu-text">Schedule</span>
           </a>
         </li>   
 
         <li>                                     
-          <a href="index.html">
+          <a href="index.php">
             <i class="fa fa-question-circle fa-lg fa-fw"></i>
             <span class="sidemenu-text">Help</span>
           </a>

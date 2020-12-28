@@ -28,16 +28,6 @@ BETWEEN occurrence.start_time
     <?php include('sections/side_menu.php'); ?>
     <!-- FIM DE BARRA VERTICAL / MENU -->
 
-<!--
-    <div class="input-group margin-bottom-sm">
-      <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-      <input class="form-control" type="text" placeholder="Email address">
-    </div>
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-key"></i></span>
-      <input class="form-control" type="password" placeholder="Password">
-    </div>
--->
 <?php include ('sections/login_personalarea.php'); ?>
 
   </ul>

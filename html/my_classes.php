@@ -9,23 +9,19 @@
 <!DOCTYPE html> 
 <html>
       
-<?php include('sections/head.php');?>
+  <head>
+    <title>COVID-19 Tracker</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="css/menu.css">
+    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">   <!-- ICONES FONT AWESOME -->
+    <!-- <script src="https://use.fontawesome.com/0090882658.js"></script> FONT AWESOME EM JAVASCRIPT!!! NAO USAR!!! -->
+  </head>
   
   <body>
     <!-- BARRA VERTICAL / MENU -->
     <?php include('sections/side_menu.php'); ?>
     <!-- FIM DE BARRA VERTICAL / MENU -->
 
-<!--
-    <div class="input-group margin-bottom-sm">
-      <span class="input-group-addon"><i class="fa fa-envelope-o" aria-hidden="true"></i></span>
-      <input class="form-control" type="text" placeholder="Email address">
-    </div>
-    <div class="input-group">
-      <span class="input-group-addon"><i class="fa fa-key"></i></span>
-      <input class="form-control" type="password" placeholder="Password">
-    </div>
--->
 <?php include ('sections/login_personalarea.php'); ?>
 
   </ul>

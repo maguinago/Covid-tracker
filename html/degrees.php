@@ -1,25 +1,31 @@
 <?php
-  $dbh = new PDO ('sqlite:sql/tracker.db');
-  $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+  require_once ('sections/ss_pdo.php');
   include ('sections/number_pages.php');
+  include ('sections/head.php');
+  include ('sections/side_menu.php');
   $n_pages = getNumberPagesDegrees();
+  include ('sections/search.php');
+  include ('sections/search_function.php');
 
-  include ('sections/header.php');
-  include ('sections/sidemenu.php');
-  /*if (id == null)*/
-  include ('sections/registerlogin_popups.php');
-  include ('sections/sideprofile.php');
-  include ('sections/pagination.php'); 
-  include ('sections/footer.php');
+  if(!empty($_GET['name'])){
+    $name = $_GET['name'];
+    $n_pages = getNumberPagesDegreesSearch($name);
+  }
+
+  include ('sections/pagination.php');
+
 
   $stmt = $dbh->prepare("SELECT * FROM degree LIMIT ? OFFSET ?");
-  $stmt -> execute(array(10, ($page - 1) * 10));  
+  $stmt -> execute(array(10, ($page - 1) * 10)); 
   $degree = $stmt->fetchAll();
 
-?>
 
+  if(!empty($_GET['name'])){
+    $name = $_GET['name'];
+    $degree = searchForDegree($name, $page);
+  }
+?>
+<body>
 <div class="overlay_body">
   <h1>Degrees</h1>
     <ul class="overlay_body_list">

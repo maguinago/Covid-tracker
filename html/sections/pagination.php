@@ -14,7 +14,7 @@
 <div class="pagination">
 
   <?php if ($page > 1):?>
-  <a href="?name=<?php echo $_GET['name']; ?>&page=<?php echo $page - 1; ?>">
+  <a href="?<?php if(!empty($_GET['name'])){ ?>name=<?php echo $_GET['name'];} ?>&page=<?php echo $page - 1; ?>">
     <span class="pagination-text"><i class='fa fa-arrow-circle-left'></i></span> 
   </a>
   <?php endif ?>
@@ -24,7 +24,7 @@
   </a>
 
   <?php if ($page < $n_pages):?>
-  <a href="?name=<?php echo $_GET['name']; ?>&page=<?php echo $page + 1; ?>">
+    <a href="?<?php if(!empty($_GET['name'])){ ?>name=<?php echo $_GET['name'];} ?>&page=<?php echo $page + 1; ?>">
     <span class="profile-text"> <i class='fa fa-arrow-circle-right'></i> </span> 
   </a>
   <?php endif ?>
