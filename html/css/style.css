@@ -174,7 +174,6 @@ body {
     height: 100%;
     top: 0;
     z-index: 2;
-    flow:right
 }
 
 .sideprofile3 ul {
@@ -282,7 +281,7 @@ hr.dotted {
     z-index: 100;
     opacity: 100%;
     position: relative;
-    left: 22em;
+    left: 20em;
     margin-top:2%;
     margin-bottom:2%;
     padding-left:5%;

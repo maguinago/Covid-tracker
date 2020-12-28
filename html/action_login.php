@@ -16,7 +16,7 @@
         $stmt->execute(array($id,hash('sha256','$password')));
         return $stmt-> fetch();
     }
-
+   
     #if login successfull
     # - create a session attribute for user id
     # - redirect for home page if
@@ -24,9 +24,21 @@
     # - remain in login page and show error message
     if (loginIsValid($id, $password)) {
         $_SESSION["id"] = $id;
+        if (userIsProfessor($id)){
+            $_SESSION["prof"]=$id;
+        } 
     } else {
         $_SESSION["msg"] = "Falha no login!";
     }
+
+    #verify if the user is a professor
+    function userIsProfessor($id) {
+        global $dbh;
+        $stmt4 = $dbh->prepare('SELECT id FROM professor WHERE id=?');
+        $stmt4->execute(array($id));
+        return $stmt4->fetch();
+    }
+    
     #if person logging in contacted a sick person
     #- create a session attribute for sick contact
     #else

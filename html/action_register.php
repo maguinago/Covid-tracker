@@ -43,6 +43,7 @@
         $err_msg = $e->getMessage();
         if (strpos($err_msg, "UNIQUE")) {
             $_SESSION["msg"] = "ID já registrado, faça login!";
+            header('Location: index.php');
         } else {
             $_SESSION ["msg"] = "O registro falhou :(";
         }
