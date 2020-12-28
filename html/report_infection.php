@@ -1,7 +1,6 @@
 <?php
   include("sections/ss_pdo.php");
-  $stat = $_SESSION["stat"];
-  unset($_SESSION["stat"]);
+  e
 
   include("sections/personal_query.php");
 
