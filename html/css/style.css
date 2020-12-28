@@ -135,6 +135,8 @@ body {
     height: 100%;
     top: 0;
     z-index: 2;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .sideprofile2 ul {
@@ -156,14 +158,16 @@ body {
 .sideprofile3 {
     background:rgb(236, 117, 5);
     opacity: 90%;
-    position:fixed;
-    display:initial;
+    position: absolute;
+    display:block;
     margin: 0;
     left: 3.5em;
-    width: 15em;
+    width: 17.3%;
     height: 100%;
     top: 0;
     z-index: 2;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .sideprofile3 ul {
