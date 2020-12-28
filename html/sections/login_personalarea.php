@@ -29,7 +29,7 @@ if (!isset ($_SESSION["sick"])) {?>
       <!--<hr class="dotted">-->
       <li>
         <a href="my_log.php">
-          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Log</span>
+          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> Insert Attendance</span>
         </a>
       </li>
       <!--<hr class="dotted">-->
