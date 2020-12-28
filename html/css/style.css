@@ -277,7 +277,7 @@ body {
 }
 
 /*CLICAR FORA DO POPUP PARA O FAZER DESAPARECER - POR IMPLEMENTAR AINDA*/
-.overlay.overlay:onclick {
+/*.overlay.overlay:onclick {
     visibility: hidden;
     opacity: 0;
 }
@@ -285,7 +285,7 @@ body {
 .overlay:target {
 	visibility: visible;
 	opacity: 1;
-}
+}*/
 
 /* SECTION THAT PERMITS TEXT ON BODY */
 .overlay_body {
@@ -418,11 +418,11 @@ footer {
     z-index: 100;
     text-decoration: none;  
 }
-
+/*
 .searchbutton {
     position: relative;
     margin-right: ;
-}
+}*/
 
 /*REGISTER/LOGIN*/
 
