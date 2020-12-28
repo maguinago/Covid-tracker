@@ -40,7 +40,7 @@
         </li>   
 
         <li>                                     
-          <a href="index.php">
+          <a href="help.php">
             <i class="fa fa-question-circle fa-lg fa-fw"></i>
             <span class="sidemenu-text">Help</span>
           </a>
