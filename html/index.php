@@ -22,7 +22,7 @@
 <?php include ('sections/login_personalarea.php'); ?>
   <div class="overlay_body">
     <div class="overlay_body_list">
-     <img src="images/covid-tracker.png" alt="Big covid logo" height="100em">
+     <img src="images/covid-tracker.png" alt="Big covid logo" height="500em" class="logo">
 </div>
   </body>
 </html>
