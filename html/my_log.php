@@ -5,18 +5,24 @@
   $stmt->execute(array($_SESSION["id"]));
   
   $result = $stmt->fetchAll();
+
+  $stmt3 = $dbh->prepare(
+"SELECT *, attendance.classroom as sala
+  FROM attendance
+  JOIN occurrence 
+    ON attendance.swipe
+BETWEEN occurrence.start_time
+   AND occurrence.end_time
+   AND sala = occurrence.classroom
+ WHERE person_id = ?
+ ORDER BY start_time DESC");
+  $stmt3->execute(array($_SESSION["id"]));
+  $attendance = $stmt3->fetchAll();
+
 ?>
 <!DOCTYPE html> 
 <html>
-      
-  <head>
-    <title>COVID-19 Tracker</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="css/menu.css">
-    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">   <!-- ICONES FONT AWESOME -->
-    <!-- <script src="https://use.fontawesome.com/0090882658.js"></script> FONT AWESOME EM JAVASCRIPT!!! NAO USAR!!! -->
-  </head>
-  
+  <?php include('sections/head.php');?>
   <body>
     <!-- BARRA VERTICAL / MENU -->
     <?php include('sections/side_menu.php'); ?>
@@ -26,13 +32,11 @@
 
   </ul>
   <div class="textonbody">
-  <h1>My Classes</h1>
+  <h1>My Attendances</h1>
     <ul class="actualtext">
-      <?php foreach ($result as $row) { ?>
+      <?php foreach ($attendance as $row) { ?>
         <li>
-          <h2>
-          <?php echo $row['course']?><?php echo $row['class']?>
-          </h2>
+          <?php echo $row['start_time'] ?> | <?php echo $row["course"]?> | <?php echo $row["class_number"]?> | <?php echo $row["sala"] ?>
         </li>
       <?php } ?>
     </ul>

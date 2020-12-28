@@ -1,33 +1,36 @@
 -- select every student that has been in the same class occurrence
 -- as an infected student in the 10 days prior to their positive test
-SELECT DISTINCT attendance.person_id as notify_covid_contact
-    FROM attendance --(4)return attendances (id) within those times and in those
-    JOIN            --classrooms (meaning same class), except who tested positive,
-        (           --to be notified as a contact and isolate + contact SNS
-        SELECT *           --(3)join all occurrences to the ones where someone that has
-        FROM occurrence     --been confirmed infected was present. This way, you have the
-        JOIN                --start and end times for classes with infected people.
-            (
-            SELECT *            --(2)all attendances of people that tested positive in the 10
-            FROM attendance      --days prior to their covid exam
-            JOIN
-                (
-                SELECT *          --(1)returns everyone who tested positive
-                FROM covid
-                WHERE covid.result = 'positive'
-                )--(1)
-            USING (person_id)
-            JOIN covid USING (person_id) 
-            WHERE attendance.swipe BETWEEN date(covid.date , '-10 days') AND covid.date
-            ) --(2)
-        ON swipe BETWEEN occurrence.start_time AND occurrence.end_time
-        ) --(3)
-    ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time
-JOIN occurrence
-ON attendance.classroom = occurrence.classroom
-LEFT JOIN covid USING (person_id)
-WHERE covid.result IS NOT 'positive'
-;
+-- SELECT * FROM
+-- (
+-- SELECT DISTINCT attendance.person_id as notify_covid_contact
+--     FROM attendance --(4)return attendances (id) within those times and in those
+--     JOIN            --classrooms (meaning same class), except who tested positive,
+--         (           --to be notified as a contact and isolate + contact SNS
+--         SELECT *           --(3)join all occurrences to the ones where someone that has
+--         FROM occurrence     --been confirmed infected was present. This way, you have the
+--         JOIN                --start and end times for classes with infected people.
+--             (
+--             SELECT *, classroom as sala           --(2)all attendances of people that tested positive in the 10
+--             FROM attendance      --days prior to their covid exam
+--             JOIN
+--                 (
+--                 SELECT *          --(1)returns everyone who tested positive
+--                 FROM covid
+--                 WHERE covid.result = 'positive'
+--                 )--(1)
+--             USING (person_id)
+--             JOIN covid USING (person_id) 
+--             WHERE attendance.swipe BETWEEN date(covid.date , '-10 days') AND covid.date
+--             ) --(2)
+--         ON swipe BETWEEN occurrence.start_time AND occurrence.end_time AND sala = occurrence.classroom
+--         ) --(3)
+--     ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time
+-- JOIN occurrence
+-- ON attendance.classroom = occurrence.classroom
+-- LEFT JOIN covid USING (person_id)
+-- WHERE covid.result IS NOT 'positive'
+-- ) WHERE notify_covid_contact=?
+-- ;
 
 
 
@@ -95,3 +98,10 @@ WHERE covid.result IS NOT 'positive'
 -- WHERE occurrence.end_time < strftime('%Y-%m-%d %H-%M-%S','now')
 -- GROUP BY course, class_number, id
 -- ;
+
+SELECT date(occurrence.start_time) as 'date(%dd-%m %H-%M)', person_id
+  FROM attendance
+  JOIN occurrence 
+    ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time AND attendance.classroom = occurrence.classroom
+ WHERE person_id = 201703602
+;

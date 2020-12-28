@@ -4,12 +4,10 @@
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   $stmt = $dbh->prepare("SELECT *, person.name AS person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym WHERE person_id = ?");
-  $stmt->execute(array($person_id=201902438));
+  $stmt->execute(array($id));
   $result = $stmt->fetchAll();
 
-  $stmt2 = $dbh->prepare("SELECT * FROM covid WHERE person_id = ?");
-  $stmt2->execute(array($person_id=201902438));
-  $covid_result = $stmt2->fetch();
+  $id = $_POST['id']; 
 ?>
 
 <!-- SIDEPROFILE -->
@@ -49,8 +47,6 @@
       <li>
         <a href="my_schedule.php">
           <span class="lastprofile-text"><i class='fa fa-arrow-circle-right'></i> My Schedule</span>
-          <!-- PARA TESTAR APENAS -->
-          <?php echo $covid_result[0]['result']; ?> 
         </a>
       </li>
     </ul>

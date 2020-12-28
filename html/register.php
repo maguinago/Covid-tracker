@@ -1,25 +1,48 @@
 <?php
-  include ('sections/ss_pdo.php');
+    include("sections/ss_pdo.php");
 
-  $msg = $_SESSION["msg"];
-  unset($_SESSION["msg"]);
-
-  $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
-  $stmt->execute(array($_SESSION["id"]));
-  $result = $stmt->fetchAll();
+    $msg = $_SESSION["msg"];
+    unset($_SESSION["msg"]);
 ?>
 
 <!DOCTYPE html> 
 <html>
       
-  <?php include('sections/head.php');?>
-  
+<?php include('sections/head.php');?>
+
   <body>
     <!-- BARRA VERTICAL / MENU -->
-  <?php include('sections/side_menu.php'); ?>
+    <?php include ('sections/side_menu.php'); ?>
     <!-- FIM DE BARRA VERTICAL / MENU -->
-
-<?php include ('sections/login_personalarea.php'); ?>
+    
+  <ul class="sideprofile"> 
+   <section id="login-box">
+   <span><?php  echo $msg; ?></span> <!-- Sucesso ou falha no registro -->
+    <h2>Faça seu registro</h2>
+        <form action="action_register.php" method="post">
+            <div>
+                <label for="name">Nome completo:</label><br>
+                <input type="text" placeholder="Conforme no sigarra" name="name"><br>
+            </div>
+            <div>
+                <label for="id">Número mecanográfico:</label><br>
+                <input type="number" placeholder="Id U.Porto" name="id"><br>
+            </div>
+            <div>
+                <label for="id">Criar senha:</label><br>
+                <input type="password" placeholder="Enter password" name="password"><br>
+            </div>
+            <div>
+                <label for="id">Confirmar senha:</label><br>
+                <input type="password" placeholder="Reenter password" name="password2"><br>
+            </div>
+            <div class="button">
+                <input type="submit" Value="Registrar-se">
+                <a href="index.php">Login</a>
+            </div>
+        </form>
+    </section>
+  </ul>
   <div class="overlay_body">
     <h1>COVID-19 Tracker</h1>
     <ul class="overlay_body_list">
