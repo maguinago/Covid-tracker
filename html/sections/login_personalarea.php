@@ -22,11 +22,6 @@ if (!isset ($_SESSION["sick"])) {?>
     </li>
     <?php } ?>
     <ul class="profile-menu">
-      <li>
-        <a href="my_lectures.php">
-          <span class="profile-text"><i class='fa fa-arrow-circle-right'></i> My Lectures</span>
-        </a>
-      </li>
       <!--<hr class="dotted">-->
       <li>
         <a href="attendance_insert.php">
