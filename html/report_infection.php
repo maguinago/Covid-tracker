@@ -51,7 +51,7 @@ BETWEEN occurrence.start_time
       Lembramos que a inserção de informações falsas levarão à investigação e possível
       sanção dos responsáveis.
   </h3>
-  <span><?php echo ($stat); ?></span>
+  <span id="stat"><?php echo ($stat); ?></span>
     <form id="report-box" action="action_infection.php" method="post">
         <div>   
               <label for="id">Data do teste:</label><br>
