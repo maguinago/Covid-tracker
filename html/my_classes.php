@@ -1,10 +1,8 @@
 <?php
   include("sections/ss_pdo.php");
 
-  $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
-  $stmt->execute(array($_SESSION["id"]));
+  include("sections/personal_query.php")
   
-  $result = $stmt->fetchAll();
 ?>
 <!DOCTYPE html> 
 <html>

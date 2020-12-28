@@ -3,21 +3,22 @@
 if (isset ($_SESSION["prof"])) { 
 
 if (!isset ($_SESSION["sick"])) {?>
-    <ul class="sideprofile2"> <?php } else { ?> <ul class="sideprofile3">  <?php } ?>
-    <?php foreach ($result as $row) { ?>
+  <ul class="sideprofile2"> <?php } else { ?>
+  <ul class="sideprofile3"><?php }
+    foreach ($result as $row) { ?>
     <li>
       <div class="profilepic">
-        <img src="images/profilepics/<?php echo $row['person_id'] ?>.jpg" alt="face" width=100% height=100%>
+        <img src="images/profilepics/<?php echo $_SESSION["id"]; ?>.jpg" alt="Profile picture" width=100% height=100%>
       </div>
     </li>
     <li>
-        <span class="username"><?php echo $row['person_name'] ?></span>
+        <span class="username"> <?php echo $row['person_name'] ?> </span>
     </li>
     <li>
-      <span class="idnumber"><?php echo $_SESSION["id"] ?></span>
+      <span class="idnumber"> <?php echo $_SESSION["id"] ?>  </span>
     </li>
     <li>
-      <span class="degree-text"><?php echo $row['degree_name'] ?></span>
+      <span class="degree-text">  <?php echo $row['faculty_name'] ?> </span>
     </li>
     <?php } ?>
     <ul class="profile-menu">
@@ -73,7 +74,7 @@ if (!isset ($_SESSION["id"])) { ?>
     <?php foreach ($result as $row) { ?>
     <li>
       <div class="profilepic">
-        <img src="images/profilepics/<?php echo $row['person_id'] ?>.jpg" alt="face" width=100% height=100%>
+        <img src="images/profilepics/<?php echo $row['person_ide'] ?>.jpg" alt="Profile Picture" width=100% height=100%>
       </div>
     </li>
     <li>

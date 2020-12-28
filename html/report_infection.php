@@ -3,23 +3,7 @@
   $stat = $_SESSION["stat"];
   unset($_SESSION["stat"]);
 
-  $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
-  $stmt->execute(array($_SESSION["id"]));
-  
-  $result = $stmt->fetchAll();
-
-  $stmt3 = $dbh->prepare(
-"SELECT *, attendance.classroom as sala
-  FROM attendance
-  JOIN occurrence 
-    ON attendance.swipe
-BETWEEN occurrence.start_time
-   AND occurrence.end_time
-   AND sala = occurrence.classroom
- WHERE person_id = ?
- ORDER BY start_time DESC");
-  $stmt3->execute(array($_SESSION["id"]));
-  $attendance = $stmt3->fetchAll();
+  include("sections/personal_query.php");
 
 ?>
 <!DOCTYPE html> 
