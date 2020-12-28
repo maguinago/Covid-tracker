@@ -127,12 +127,11 @@ body {
 /*Styling if user has not contacted a sick person*/
 .sideprofile2 {
     background:rgb(66, 172, 80);
-    opacity: 90%;
-    position:fixed;
-    display:initial;
+    opacity: 100%;
+    position: absolute;
     margin: 0;
-    left: 3.5em;
-    width: 15em;
+    left: 3%;
+    width: 17.3%;
     height: 100%;
     top: 0;
     z-index: 2;
@@ -143,9 +142,9 @@ body {
     text-align: center;
 }
 
-.sideprofile2>li {
+.sideprofile2 li {
     position:relative;
-    width: 12em;
+    width: 17em;
     display:table;
     color:#ffffff;
     text-decoration:none;
