@@ -1,7 +1,7 @@
 <?php
   include ('sections/ss_pdo.php');
 
-      $msg = $_SESSION["msg"];
+    $msg = $_SESSION["msg"];
     unset($_SESSION["msg"]);
 
 
@@ -23,7 +23,7 @@
 <!DOCTYPE html> 
 <html>
       
-  <?php include('sections/head.php');?>
+  <?php include ('sections/head.php'); ?>
   
   <body>
     <!-- BARRA VERTICAL / MENU -->
