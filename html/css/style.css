@@ -227,7 +227,7 @@ body {
     color: white;
     display:table;
     margin-left: -2.5em;
-    margin-bottom: 0.5em;
+    margin-bottom: -0.5em;
 }
 
 .profile-menu>li:hover a .profile-text{
@@ -237,7 +237,7 @@ body {
 
 .profile-menu a .lastprofile-text {
     width:12em; 
-    margin-bottom: 3em;
+    margin-bottom: 1em;
     color: white;
     display:table;
     margin-top: 1em;  
@@ -351,6 +351,12 @@ hr.dotted {
     display:inline-block;
     max-width: 20em;
     color:black;
+}
+
+#stat {
+    margin-left:2em;
+    margin-bottom: 2em;
+    color: rgb(143, 87, 68);
 }
 
 /* Login area*/
