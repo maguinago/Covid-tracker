@@ -6,12 +6,6 @@
             <span class="sidemenu-text">Home</span>
           </a>
         </li>
-        <li>                                 
-          <a href="index.php">
-          <i class="fa fa-newspaper-o fa-lg fa-fw"></i>
-          <span class="sidemenu-text">News</span>
-          </a>
-        </li>   
         <li>
           <a href="faculties.php">
           <i class="fa fa-building-o fa-lg fa-fw"></i>
