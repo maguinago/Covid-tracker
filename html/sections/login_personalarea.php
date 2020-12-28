@@ -8,7 +8,7 @@ if (!isset ($_SESSION["sick"])) {?>
     foreach ($result as $row) { ?>
     <li>
       <div class="profilepic">
-        <img src="images/profilepics/<?php echo $_SESSION["prof"]; ?>.jpg" alt="Profile picture" width=100% height=100%>
+        <img src="images/profile.png" alt="Profile picture" width=100% height=100%>
       </div>
     </li>
     <li>
@@ -74,7 +74,7 @@ if (!isset ($_SESSION["id"])) { ?>
     <?php foreach ($result as $row) { ?>
     <li>
       <div class="profilepic">
-        <img src="images/profilepics/<?php echo $row['person_ide'] ?>.jpg" alt="Profile Picture" width=100% height=100%>
+        <img src="images/profile.png" alt="Profile Picture" width=100% height=100%>
       </div>
     </li>
     <li>
