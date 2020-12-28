@@ -116,7 +116,15 @@
 -- WHERE person_ide = ?"
 -- ;
 
-SELECT course, class_number, start_time
-  FROM occurrence
- WHERE occurrence.professor = 656730
-   AND occurrence.classroom IS NOT 'EAD';
+SELECT *, attendance.classroom as sala, 
+                    person.name as person_name, 
+                      person.id as person_ide,
+          occurrence.start_time as time
+   FROM occurrence
+   JOIN attendance ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time AND sala = occurrence.classroom
+   JOIN person ON person_id = person.id
+  WHERE occurrence.professor = 656730
+    AND occurrence.classroom IS NOT 'EAD'
+    AND attendance.person_id <> 656730
+    AND occurrence.end_time < datetime('now')
+;

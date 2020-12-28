@@ -27,13 +27,13 @@
 <?php include ('sections/login_personalarea.php'); ?>
 
   </ul>
-  <div class="textonbody">
+  <div class="overlay_body">
   <h1>My Classes</h1>
     <ul class="actualtext">
       <?php foreach ($result as $row) { ?>
         <li>
           <h2>
-          <?php echo $row['course']?><?php echo $row['class']?>
+          <?php echo $row['course_acronym']?><?php echo $row['class_number']?>
           </h2>
         </li>
       <?php } ?>

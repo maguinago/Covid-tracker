@@ -83,7 +83,7 @@
     if (contactedSickPerson($id)) {
         $_SESSION["sick"] = "Estivestes em contacto com um infetado. Contacte o SNS!";
       } else {
-        $_SESSION["msg"] = "Use máscara e álcool gel!";
+        $_SESSION["dead"] = "Use máscara e álcool gel!";
       }
 header('Location: index.php')
 ?>
