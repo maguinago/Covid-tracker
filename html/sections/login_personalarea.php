@@ -1,6 +1,6 @@
 
 <?php
-if (isset ($_SESSION["prof"])) { 
+if (!isset ($_SESSION["prof"])) { 
 
 if (!isset ($_SESSION["sick"])) {?>
   <ul class="sideprofile2"> <?php } else { ?>
