@@ -1,8 +1,8 @@
 <?php
-  include("sections/ss_pdo.php");
-  e
+  include ("sections/ss_pdo.php");
 
-  include("sections/personal_query.php");
+
+  include ("sections/personal_query.php");
 
 ?>
 <!DOCTYPE html> 
@@ -20,7 +20,7 @@
   </ul>
   <div class="overlay_body">
   <h1>Reportar infecção para COVID-19</h1>
-  <h3>Caso tenha testado positivo para o Covid-19, preencha o formulário abaixo.
+  <h3 class="subtitle">Caso tenha testado positivo para o Covid-19, preencha o formulário abaixo.
       Lembramos que a inserção de informações falsas levarão à investigação e possível
       sanção dos responsáveis.
   </h3>

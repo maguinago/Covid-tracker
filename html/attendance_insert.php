@@ -29,12 +29,13 @@ include("sections/personal_query.php");
       <input class="form-control" type="password" placeholder="Password">
     </div>
 -->
-<?php include ('sections/login_personalarea.php'); ?>
-
+<?php include ('sections/login_personalarea.php'); 
+  if (isset($_SESSION["prof"])) { ?>
+ 
   </ul>
   <div class="overlay_body">
   <h1>Inserir presença manualmente</h1>
-  <h3>Caso um aluno não tenha registrado sua presença com o cartão U.Porto na sala de aula, insira
+  <h3 class="subtitle">Caso um aluno não tenha registrado sua presença com o cartão U.Porto na sala de aula, insira
     sua presença submetendo este formulário.
   </h3>
     <span id="stat"><?php echo ($stat); ?></span>
@@ -55,6 +56,10 @@ include("sections/personal_query.php");
             </div>
       </div>
       </form>
+    <?php } else {?>
+      <div class="overlay_body">
+  <h1>Você não tem permissão para aceder a este conteúdo!</h1>
+      <?php } ?>
   </div>
   </body>
 </html>

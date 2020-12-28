@@ -302,7 +302,7 @@ body {
     padding-left:5%;
     color:rgb(143, 87, 68);
     font-size: 3em;
-    margin-bottom: 4%;
+    margin-bottom: 2%;
 }
 
 .overlay_body_text h2 {
@@ -336,7 +336,14 @@ body {
 
 /* Checkbox for reporting a positive test*/
 #report-box {
-    margin-left:2em;
+    margin-left:10em;
+}
+
+.subtitle {
+    margin-left:8em;
+    max-width: 40em;
+    color:black;
+    text-align: justify;
 }
 
 #aware {
