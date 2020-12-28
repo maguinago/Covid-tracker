@@ -85,5 +85,5 @@
       } else {
         $_SESSION["dead"] = "Use máscara e álcool gel!";
       }
-header('Location: index.php')
+header('Location: help.php');
 ?>
