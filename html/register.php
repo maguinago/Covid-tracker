@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    include("sections/ss_pdo.php");
+
     $msg = $_SESSION["msg"];
     unset($_SESSION["msg"]);
 ?>
@@ -7,90 +8,11 @@
 <!DOCTYPE html> 
 <html>
       
-  <head>
-    <title>COVID-19 Tracker</title>
-    <meta charset="UTF-8"/>
-    <link rel="stylesheet" type="text/css" href="css/menu.css">
-    <link rel="stylesheet" type="text/css" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">   <!-- ICONES FONT AWESOME -->
-    <!-- <script src="https://use.fontawesome.com/0090882658.js"></script> FONT AWESOME EM JAVASCRIPT!!! NAO USAR!!! -->
-  </head>
+<?php include('sections/head.php');?>
+
   <body>
     <!-- BARRA VERTICAL / MENU -->
-    <section class="sidemenu"> 
-      <ul>
-
-        <li>                                   
-          <a href="index.php">
-            <i class="fa fa-home fa-lg fa-fw"></i>
-            <span class="sidemenu-text">Home</span>
-          </a>
-        </li>   
-            
-        <li>                                 
-          <a href="index.html">
-          <i class="fa fa-newspaper-o fa-lg fa-fw"></i>
-          <span class="sidemenu-text">News</span>
-          </a>
-        </li>   
-          
-        <li>
-          <a href="faculties.php">
-          <i class="fa fa-building-o fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Faculties</span>
-          </a>
-        </li>
-          
-        <li>
-          <a href="index.html">
-          <i class="fa fa-graduation-cap fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Degrees</span>
-          </a>
-        </li>
-          
-        <li>
-          <a href="index.html">
-          <i class="fa fa-briefcase fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Courses</span>
-          </a>
-        </li>        
-          
-        <li>
-          <a href="index.html">
-          <i class="fa fa-book fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Classes</span>
-          </a>
-        </li>   
-
-        <li>
-          <a href="index.html">
-          <i class="fa fa-calendar fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Schedule</span>
-          </a>
-        </li>   
-
-        <li>                                     
-          <a href="index.html">
-            <i class="fa fa-question-circle fa-lg fa-fw"></i>
-            <span class="sidemenu-text">Help</span>
-          </a>
-        </li>   
-      </ul>    
-      <ul class="loginout">
-        <li>                                 
-          <a href="index.html">
-          <i class="fa fa-user fa-lg fa-fw"></i>
-          <span class="sidemenu-text">Register</span>
-          </a>
-        </li>  
-        <li>
-          <a href="index.html">
-            <i class="fa fa-sign-in fa-lg fa-fw"></i>
-            <span class="sidemenu-text">Login</span>
-          </a>
-        </li>
-
-      </ul>
-    </section>
+    <?php include('sections/side_menu.php'); ?>
     <!-- FIM DE BARRA VERTICAL / MENU -->
 
 <!--

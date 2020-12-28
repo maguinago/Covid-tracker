@@ -1,5 +1,7 @@
 <?php
   include("sections/ss_pdo.php");
+  $stat = $_SESSION["stat"];
+  unset($_SESSION["stat"]);
 
   $stmt = $dbh->prepare("SELECT *, person.name as person_name, degree.name as degree_name FROM enrollment JOIN person ON person.id = enrollment.person_id join student ON person.id = student.id join degree ON student.degree = degree.acronym  WHERE person_id = ?");
   $stmt->execute(array($_SESSION["id"]));
@@ -22,7 +24,9 @@ BETWEEN occurrence.start_time
 ?>
 <!DOCTYPE html> 
 <html>
+      
   <?php include('sections/head.php');?>
+
   <body>
     <!-- BARRA VERTICAL / MENU -->
     <?php include('sections/side_menu.php'); ?>
@@ -42,14 +46,25 @@ BETWEEN occurrence.start_time
 
   </ul>
   <div class="textonbody">
-  <h1>My Attendances</h1>
-    <ul class="actualtext">
-      <?php foreach ($attendance as $row) { ?>
-        <li>
-          <?php echo $row['start_time'] ?> | <?php echo $row["course"]?> | <?php echo $row["class_number"]?> | <?php echo $row["sala"] ?>
-        </li>
-      <?php } ?>
-    </ul>
+  <h1>Reportar infecção para COVID-19</h1>
+  <h3>Caso tenha testado positivo para o Covid-19, preencha o formulário abaixo.
+      Lembramos que a inserção de informações falsas levarão à investigação e possível
+      sanção dos responsáveis.
+  </h3>
+  <span><?php echo ($stat); ?></span>
+    <form id="report-box" action="action_infection.php" method="post">
+        <div>   
+              <label for="id">Data do teste:</label><br>
+              <input type="date" name="date"><br>
+          </div>
+          <div id="aware">
+              <div><input type="checkbox" name="aware" required='required'></div>
+              <div><label for="aware"><p>Estou ciente da minha responsabilidade quanto à informação aqui submetida.</p></label></div>
+          </div>
+          <div class="button">
+              <input type="Submit" Value="Confirmar">
+          </div>
+    </form>
   </div>
   </body>
 </html>

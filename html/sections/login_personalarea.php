@@ -51,8 +51,8 @@
       </li>
       <!--<hr class="dotted">-->
       <li>
-        <a href="reportcovid.php">
-          <span class="lastprofile-text"><i class='fa fa-arrow-circle-right'></i> Report covid</span>
+        <a href="report_infection.php">
+          <span class="lastprofile-text"><i class='fa fa-arrow-circle-right'></i> Report Infection</span>
         </a>
       </li>
       <li>

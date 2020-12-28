@@ -3,10 +3,7 @@
     $msg = $_SESSION["msg"];
     unset($_SESSION["msg"]);
 
-    $dbh = new PDO ('sqlite:sql/tracker.db');
-    $dbh->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
+    include("sections/ss_pdo.php");
 
     $name = $_POST['name'];
     $id = $_POST['id'];
@@ -16,7 +13,6 @@
     #insert new user into database
     function insertUser($name,$id,$password) {
         global $dbh;
-        global $con;
         $stmt = $dbh->prepare("INSERT INTO user (name,id,password) VALUES (?,?,?)");
         $stmt->execute(array($name,$id,hash('sha256','$password')));
     }

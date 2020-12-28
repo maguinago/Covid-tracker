@@ -99,9 +99,9 @@
 -- GROUP BY course, class_number, id
 -- ;
 
-SELECT *, attendance.classroom as sala
+SELECT date(occurrence.start_time) as 'date(%dd-%m %H-%M)', person_id
   FROM attendance
   JOIN occurrence 
-    ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time AND sala = occurrence.classroom
+    ON attendance.swipe BETWEEN occurrence.start_time AND occurrence.end_time AND attendance.classroom = occurrence.classroom
  WHERE person_id = 201703602
 ;
