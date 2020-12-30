@@ -1,7 +1,7 @@
 <?php
   include("sections/ss_pdo.php");
 
-  include("sections/personal_query.php")
+  include("sections/personal_query.php");
   
 ?>
 <!DOCTYPE html> 
@@ -24,13 +24,15 @@
       <input class="form-control" type="password" placeholder="Password">
     </div>
 -->
-<?php include ('sections/login_personalarea.php'); ?>
+<?php include ('sections/login_personalarea.php');?>
+
+<?php include ('sections/classes_query.php'); ?>
 
   </ul>
   <div class="overlay_body">
   <h1>My Classes</h1>
     <ul class="actualtext">
-      <?php foreach ($result as $row) { ?>
+      <?php foreach ($class as $row) { ?>
         <li>
           <h2>
           <?php echo $row['course_acronym']?><?php echo $row['class_number']?>

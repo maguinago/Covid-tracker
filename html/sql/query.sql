@@ -132,3 +132,11 @@
 --     AND attendance.person_id <> 656730
 --     AND occurrence.end_time < datetime('now')
 -- ;
+
+SELECT person.id as person_ide,
+    person.name as person_name,
+    degree.name as degree_name
+FROM student
+JOIN person ON person_ide = student.id
+JOIN degree ON student.degree = degree.acronym
+WHERE person_ide = 201703602;
